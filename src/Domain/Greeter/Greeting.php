@@ -2,7 +2,7 @@
 
 namespace App\Domain\Greeter;
 
-class Greeter
+class Greeting
 {
     private const GREETING_TEMPLATE = 'Hello, %s!';
     private string $name;
@@ -12,12 +12,12 @@ class Greeter
         $this->name = $name;
     }
 
-    public static function fromName(string $name): Greeter
+    public static function fromName(string $name): Greeting
     {
         return new self($name);
     }
 
-    public function greet(): string
+    public function greeting(): string
     {
         return sprintf(self::GREETING_TEMPLATE, $this->name);
     }

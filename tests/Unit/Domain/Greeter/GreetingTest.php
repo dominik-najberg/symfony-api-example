@@ -2,10 +2,10 @@
 
 namespace App\Tests\Unit\Domain\Greeter;
 
-use App\Domain\Greeter\Greeter;
+use App\Domain\Greeter\Greeting;
 use PHPUnit\Framework\TestCase;
 
-class GreeterTest extends TestCase
+class GreetingTest extends TestCase
 {
     /**
      * @test
@@ -13,9 +13,9 @@ class GreeterTest extends TestCase
     public function shouldCreateGreeting(): void
     {
         $expected = 'Hello, Dominik!';
-        $actual = Greeter::fromName('Dominik');
+        $actual = Greeting::fromName('Dominik');
 
-        self::assertEquals($expected, $actual->greet());
+        self::assertEquals($expected, $actual->greeting());
     }
 
 }
