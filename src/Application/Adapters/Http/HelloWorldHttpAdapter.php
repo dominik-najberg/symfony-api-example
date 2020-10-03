@@ -2,6 +2,7 @@
 
 namespace App\Application\Adapters\Http;
 
+use App\Application\Adapters\Http\Response\HelloWorldResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -9,8 +10,8 @@ class HelloWorldHttpAdapter
 {
     public function __invoke(Request $request): Response
     {
-        $responseText = sprintf('Hello, %s!', $request->get('name'));
-
-        return new Response($responseText, Response::HTTP_OK);
+        return HelloWorldResponse::fromName(
+            $request->get('name')
+        );
     }
 }
