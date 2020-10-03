@@ -1,0 +1,3 @@
+index:
+    path: /hello-world
+    controller: App\Application\Adapters\Http\HelloWorldHttpAdapter
