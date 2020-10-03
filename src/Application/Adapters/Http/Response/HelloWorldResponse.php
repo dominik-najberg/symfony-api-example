@@ -7,14 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HelloWorldResponse extends JsonResponse
 {
-    public static function fromName(string $name): HelloWorldResponse
+    public static function fromName(string $message): HelloWorldResponse
     {
         return new self([
             'data' => [
                 'type' => 'hello-worlds',
                 'id' => 'UUID',
                 'attributes' => [
-                    'greeting' => sprintf('Hello, %s!', $name),
+                    'greeting' => $message,
                 ],
             ],
         ], Response::HTTP_OK);
