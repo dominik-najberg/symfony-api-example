@@ -2,6 +2,7 @@
 
 namespace App\Tests\Feature\Adapters;
 
+use App\Tests\Unit\Util\GreetingDataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,7 +20,7 @@ class GreetingAdapterTest extends WebTestCase
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertJsonStringEqualsJsonString(
-            sprintf('{"data":{"type":"greetings","id":"UUID","attributes":{"greeting":"Hello, %s!"}}}', $name),
+            GreetingDataProvider::createResponseJson($name),
             $response->getContent()
         );
     }
