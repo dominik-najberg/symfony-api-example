@@ -14,7 +14,7 @@ class GreetingAdapterTest extends WebTestCase
     public function shouldSayHello(string $name): void
     {
         $client = static::createClient();
-        $client->request('GET', sprintf('/greeting?name=%s', $name));
+        $client->request('GET', sprintf('/greetings?name=%s', $name));
         $response = $client->getResponse();
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());

@@ -6,14 +6,14 @@ use App\Domain\Greeter\Greeting;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class HelloWorldResponse extends JsonResponse
+class GreetingResponse extends JsonResponse
 {
-    public static function fromGreeting(Greeting $greeting): HelloWorldResponse
+    public static function fromGreeting(Greeting $greeting): GreetingResponse
     {
         return new self([
             'data' => [
-                'type' => 'hello-worlds',
-                'id' => 'UUID',
+                'type'       => 'greetings',
+                'id'         => 'UUID',
                 'attributes' => [
                     'greeting' => $greeting->greeting(),
                 ],
