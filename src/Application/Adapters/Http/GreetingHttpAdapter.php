@@ -9,17 +9,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GreetingHttpAdapter
 {
-    private Greetings $greeting;
+    private Greetings $greetings;
 
-    public function __construct(Greetings $greeting)
+    public function __construct(Greetings $greetings)
     {
-        $this->greeting = $greeting;
+        $this->greetings = $greetings;
     }
 
     public function __invoke(Request $request): Response
     {
         return GreetingResponse::fromGreeting(
-            $this->greeting->byName($request->get('name'))
+            $this->greetings->byName($request->get('name'))
         );
     }
 }
