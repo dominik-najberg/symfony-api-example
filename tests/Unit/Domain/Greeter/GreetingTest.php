@@ -13,7 +13,7 @@ class GreetingTest extends TestCase
     public function shouldCreateGreeting(): void
     {
         $expected = 'Hello, Dominik!';
-        $actual = Greeting::fromName('Dominik');
+        $actual   = Greeting::byName('Dominik');
 
         self::assertEquals($expected, $actual->greeting());
     }

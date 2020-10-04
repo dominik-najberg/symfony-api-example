@@ -12,7 +12,7 @@ class Greeting
         $this->name = $name;
     }
 
-    public static function fromName(string $name): Greeting
+    public static function byName(string $name): Greeting
     {
         return new self($name);
     }

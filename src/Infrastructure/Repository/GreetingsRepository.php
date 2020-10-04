@@ -9,6 +9,6 @@ class GreetingsRepository implements Greetings
 {
     public function byName(string $name): Greeting
     {
-        return Greeting::fromName($name);
+        return Greeting::byName($name);
     }
 }

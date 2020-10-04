@@ -5,7 +5,7 @@ namespace App\Tests\Feature\Adapters;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-class HelloWorldAdapterTest extends WebTestCase
+class GreetingAdapterTest extends WebTestCase
 {
     /**
      * @test
@@ -14,12 +14,12 @@ class HelloWorldAdapterTest extends WebTestCase
     public function shouldSayHello(string $name): void
     {
         $client = static::createClient();
-        $client->request('GET', sprintf('/hello-world?name=%s', $name));
+        $client->request('GET', sprintf('/greeting?name=%s', $name));
         $response = $client->getResponse();
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertJsonStringEqualsJsonString(
-            sprintf('{"data":{"type":"hello-worlds","id":"UUID","attributes":{"greeting":"Hello, %s!"}}}', $name),
+            sprintf('{"data":{"type":"greetings","id":"UUID","attributes":{"greeting":"Hello, %s!"}}}', $name),
             $response->getContent()
         );
     }

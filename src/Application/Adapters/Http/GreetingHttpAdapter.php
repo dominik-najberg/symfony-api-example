@@ -7,7 +7,7 @@ use App\Application\Port\Query\Greetings;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HelloWorldHttpAdapter
+class GreetingHttpAdapter
 {
     private Greetings $greeting;
 
