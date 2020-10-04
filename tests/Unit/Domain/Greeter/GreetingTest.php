@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Domain\Greeter;
 
-use App\Domain\Greeter\Greeting;
+use App\Domain\Greeting\Greeting;
 use PHPUnit\Framework\TestCase;
 
 class GreetingTest extends TestCase

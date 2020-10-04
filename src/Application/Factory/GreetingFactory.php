@@ -3,7 +3,7 @@
 namespace App\Application\Factory;
 
 use App\Application\Port\Query\Greetings;
-use App\Domain\Greeter\Greeting;
+use App\Domain\Greeting\Greeting;
 
 class GreetingFactory implements Greetings
 {

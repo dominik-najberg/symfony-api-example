@@ -2,7 +2,7 @@
 
 namespace App\Application\Adapters\Http\Response;
 
-use App\Domain\Greeter\Greeting;
+use App\Domain\Greeting\Greeting;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

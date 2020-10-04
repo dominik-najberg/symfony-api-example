@@ -24,6 +24,10 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
+            <exclude>
+                <file>src/.preload.php</file>
+                <file>src/Kernel.php</file>
+            </exclude>
         </whitelist>
     </filter>
 
