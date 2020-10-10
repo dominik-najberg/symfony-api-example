@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Feature\Adapters;
+namespace App\Tests\Feature\Adapters\Http;
 
 use App\Tests\Unit\Util\GreetingDataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

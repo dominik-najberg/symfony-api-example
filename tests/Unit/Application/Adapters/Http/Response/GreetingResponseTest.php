@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Application\Adapters\Http\Response;
+namespace App\Tests\Unit\Application\Adapters\Http\Response;
 
 use App\Application\Adapters\Http\Response\GreetingResponse;
 use App\Domain\Greeting\Greeting;
