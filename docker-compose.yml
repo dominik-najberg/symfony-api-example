@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  app:
+    build:
+      args:
+        user: monster
+        uid: 1000
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: symfony-api-app
+    container_name: symfony-api-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - internal
+
+  database:
+    image: mysql:5.7
+    container_name: symfony-api-db
+    restart: unless-stopped
+    ports:
+      - 3336:3306
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker/database:/docker-entrypoint-initdb.d
+    networks:
+      - internal
+
+  webserver:
+    image: nginx:alpine
+    container_name: symfony-api-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
