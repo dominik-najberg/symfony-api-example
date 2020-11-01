@@ -14,6 +14,7 @@ services:
     working_dir: /var/www/
     volumes:
       - ./:/var/www
+      - ./var/report:/opt
     networks:
       - internal
 
