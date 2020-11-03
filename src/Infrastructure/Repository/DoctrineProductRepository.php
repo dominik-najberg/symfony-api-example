@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Product[]    findAll()
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProductRepository extends ServiceEntityRepository
+class DoctrineProductRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -47,4 +47,10 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function save(Product $product): void
+    {
+        $this->getEntityManager()->persist($product);
+        $this->getEntityManager()->flush();
+    }
 }
