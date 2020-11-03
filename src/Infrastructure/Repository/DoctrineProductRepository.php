@@ -51,6 +51,6 @@ class DoctrineProductRepository extends ServiceEntityRepository
     public function save(Product $product): void
     {
         $this->getEntityManager()->persist($product);
-        $this->getEntityManager()->flush();
+        $this->getEntityManager()->flush(); // TODO flush in a better moment
     }
 }

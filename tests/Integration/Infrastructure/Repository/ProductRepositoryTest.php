@@ -4,26 +4,26 @@ namespace App\Tests\Integration\Infrastructure\Repository;
 
 use App\Domain\Product\Product;
 use App\Infrastructure\Repository\DoctrineProductRepository;
+use App\Tests\Integration\DbTestingTrait;
 use App\Tests\Util\Assembler\ProductAssembler;
-use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class ProductRepositoryTest extends KernelTestCase
 {
+    use DbTestingTrait;
+
     private DoctrineProductRepository $repository;
-    private EntityManager             $entityManager;
 
     protected function setUp(): void
     {
-        $kernel = self::bootKernel();
-
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
+        self::bootKernel();
+        $this->entityManager = self::$container->get('doctrine')->getManager();
 
         /** @var DoctrineProductRepository $repository */
-        $repository       = $this->entityManager->getRepository(Product::class);
+        $repository       = self::$container->get(DoctrineProductRepository::class);
         $this->repository = $repository;
+
+        $this->truncateTable(Product::class);
     }
 
     /**
@@ -37,5 +37,4 @@ class ProductRepositoryTest extends KernelTestCase
         $actual = $this->entityManager->find(Product::class, $expected->id());
         self::assertEquals($actual, $expected);
     }
-
 }
