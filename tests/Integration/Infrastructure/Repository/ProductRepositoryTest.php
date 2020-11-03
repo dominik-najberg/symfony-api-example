@@ -4,20 +4,16 @@ namespace App\Tests\Integration\Infrastructure\Repository;
 
 use App\Domain\Product\Product;
 use App\Infrastructure\Repository\DoctrineProductRepository;
-use App\Tests\Integration\DbTestingTrait;
+use App\Tests\Integration\DbTestCase;
 use App\Tests\Util\Assembler\ProductAssembler;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class ProductRepositoryTest extends KernelTestCase
+class ProductRepositoryTest extends DbTestCase
 {
-    use DbTestingTrait;
-
     private DoctrineProductRepository $repository;
 
     protected function setUp(): void
     {
         self::bootKernel();
-        $this->entityManager = self::$container->get('doctrine')->getManager();
 
         /** @var DoctrineProductRepository $repository */
         $repository       = self::$container->get(DoctrineProductRepository::class);

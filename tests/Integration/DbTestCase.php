@@ -3,13 +3,16 @@
 namespace App\Tests\Integration;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-trait DbTestingTrait
+class DbTestCase extends KernelTestCase
 {
-    private EntityManagerInterface $entityManager;
+    protected EntityManagerInterface $entityManager;
 
-    private function truncateTable(string $className): void
+    protected function truncateTable(string $className): void
     {
+        $this->entityManager = self::$container->get('doctrine')->getManager();
+
         $connection       = $this->entityManager->getConnection();
         $databasePlatform = $connection->getDatabasePlatform();
         $query            = $databasePlatform->getTruncateTableSQL(
