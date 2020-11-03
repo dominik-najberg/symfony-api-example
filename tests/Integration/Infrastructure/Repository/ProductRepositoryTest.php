@@ -34,8 +34,6 @@ class ProductRepositoryTest extends KernelTestCase
         $expected = ProductAssembler::new()->assemble();
         $this->repository->save($expected);
 
-        $this->entityManager->flush();
-
         $actual = $this->entityManager->find(Product::class, $expected->id());
         self::assertEquals($actual, $expected);
     }

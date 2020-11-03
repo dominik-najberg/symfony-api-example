@@ -27,7 +27,7 @@ class ProductAssembler
     public static function new(): ProductAssembler
     {
         return new self(
-            Uuid::fromString('40119f77-56d2-4941-ac5e-1f8a2e6ef26b'),
+            Uuid::uuid4(),
             new Name('product name'),
             new Description(str_repeat('description', 10)),
             Money::USD(700),
