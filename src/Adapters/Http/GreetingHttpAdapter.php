@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Adapters\Http;
+namespace App\Adapters\Http;
 
-use App\Application\Adapters\Http\Response\GreetingResponse;
+use App\Adapters\Http\Response\GreetingResponse;
 use App\Application\Port\Query\Greetings;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

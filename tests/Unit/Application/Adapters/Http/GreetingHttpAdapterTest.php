@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Application\Adapters\Http;
 
-use App\Application\Adapters\Http\GreetingHttpAdapter;
+use App\Adapters\Http\GreetingHttpAdapter;
 use App\Application\Port\Query\Greetings;
 use App\Domain\Greeting\Greeting;
 use PHPUnit\Framework\TestCase;

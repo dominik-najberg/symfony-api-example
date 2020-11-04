@@ -10,6 +10,8 @@ use Ramsey\Uuid\Uuid;
 
 class ProductDataProvider
 {
+    private const NUMBER_OF_DOMAINS = 10;
+
     /**
      * @return Product[]
      */
@@ -17,7 +19,7 @@ class ProductDataProvider
     {
         $products = [];
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < self::NUMBER_OF_DOMAINS; $i++) {
             $products[] = new Product(
                 Uuid::uuid4(),
                 new Name(sprintf('Interesting product %d', $i)),
