@@ -3,10 +3,10 @@
 namespace App\Tests\Integration\Infrastructure\Repository;
 
 use App\Domain\Product\Product;
-use App\Infrastructure\DataFixtures\ProductFixtures;
 use App\Infrastructure\Repository\DoctrineProductRepository;
 use App\Tests\Integration\DbTestCase;
 use App\Tests\Util\Assembler\ProductAssembler;
+use App\Tests\Util\Seeder\ProductSeeder;
 
 class ProductRepositoryTest extends DbTestCase
 {
@@ -21,7 +21,7 @@ class ProductRepositoryTest extends DbTestCase
         $this->repository = $repository;
 
         $this->truncateTable(Product::class);
-        $this->loadFixtures(ProductFixtures::class);
+        $this->seedDb(ProductSeeder::class);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Tests\Integration;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use App\Tests\Util\Seeder\Seeder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -22,10 +22,10 @@ class DbTestCase extends KernelTestCase
         $connection->executeStatement($query);
     }
 
-    protected function loadFixtures(string $fixtureClass)
+    protected function seedDb(string $fixtureClass): void
     {
-        $fixture = self::$container->get($fixtureClass);
-        self::assertInstanceOf(FixtureInterface::class, $fixture);
+        $fixture = new $fixtureClass($this->entityManager);
+        self::assertInstanceOf(Seeder::class, $fixture);
         $fixture->load($this->entityManager);
     }
 }
