@@ -43,4 +43,25 @@ class ProductAssembler
             $this->price,
         );
     }
+
+    public function withName(string $name): ProductAssembler
+    {
+        $this->name = new Name($name);
+
+        return $this;
+    }
+
+    public function withDescription(string $description): ProductAssembler
+    {
+        $this->description = new Description(str_repeat($description, 10));
+
+        return $this;
+    }
+
+    public function withPriceInUSD(int $amount): ProductAssembler
+    {
+        $this->price = Money::USD($amount);
+
+        return $this;
+    }
 }

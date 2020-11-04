@@ -2,11 +2,8 @@
 
 namespace App\Tests\Util\DataProvider;
 
-use App\Domain\Product\Description;
-use App\Domain\Product\Name;
 use App\Domain\Product\Product;
-use Money\Money;
-use Ramsey\Uuid\Uuid;
+use App\Tests\Util\Assembler\ProductAssembler;
 
 class ProductDataProvider
 {
@@ -20,12 +17,11 @@ class ProductDataProvider
         $products = [];
 
         for ($i = 0; $i < self::NUMBER_OF_DOMAINS; $i++) {
-            $products[] = new Product(
-                Uuid::uuid4(),
-                new Name(sprintf('Interesting product %d', $i)),
-                new Description(str_repeat(sprintf('Lorem ipsum dolor sit amet, consectetur adipiscing elit. '), 20)),
-                Money::USD(100 * $i)
-            );
+            $products[] = ProductAssembler::new()
+                ->withName(sprintf('Interesting product %d', $i))
+                ->withDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
+                ->withPriceInUSD(100 * $i)
+                ->assemble();
         }
 
         return $products;
