@@ -44,6 +44,13 @@ class ProductAssembler
         );
     }
 
+    public function withId(string $id): ProductAssembler
+    {
+        $this->id = Uuid::fromString($id);
+
+        return $this;
+    }
+
     public function withName(string $name): ProductAssembler
     {
         $this->name = new Name($name);

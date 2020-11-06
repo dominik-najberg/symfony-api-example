@@ -2,7 +2,7 @@
 
 namespace App\Tests\Integration;
 
-use App\Tests\Util\Seeder\Seeder;
+use App\Tests\Util\Seeder\DbSeeder;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -22,10 +22,9 @@ class DbTestCase extends KernelTestCase
         $connection->executeStatement($query);
     }
 
-    protected function seedDb(string $fixtureClass): void
+    protected function seedDb(array $entities): void
     {
-        $fixture = new $fixtureClass($this->entityManager);
-        self::assertInstanceOf(Seeder::class, $fixture);
-        $fixture->load($this->entityManager);
+        $fixture = new DbSeeder($this->entityManager);
+        $fixture->load($entities);
     }
 }

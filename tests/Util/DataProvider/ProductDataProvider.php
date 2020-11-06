@@ -26,4 +26,18 @@ class ProductDataProvider
 
         return $products;
     }
+
+    /**
+     * @return Product[]
+     */
+    public static function singleProduct(): array
+    {
+        return [ProductAssembler::new()
+            ->withId('82e00d1b-b8a9-4011-a5aa-a5e92c3e2021')
+            ->withName(sprintf('One interesting product'))
+            ->withDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')
+            ->withPriceInUSD(1000)
+            ->assemble()
+        ];
+    }
 }

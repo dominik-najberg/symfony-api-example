@@ -6,7 +6,7 @@ use App\Domain\Product\Product;
 use App\Infrastructure\Repository\DoctrineProductRepository;
 use App\Tests\Integration\DbTestCase;
 use App\Tests\Util\Assembler\ProductAssembler;
-use App\Tests\Util\Seeder\ProductSeeder;
+use App\Tests\Util\DataProvider\ProductDataProvider;
 
 class ProductRepositoryTest extends DbTestCase
 {
@@ -21,7 +21,7 @@ class ProductRepositoryTest extends DbTestCase
         $this->repository = $repository;
 
         $this->truncateTable(Product::class);
-        $this->seedDb(ProductSeeder::class);
+        $this->seedDb(ProductDataProvider::products());
     }
 
     /**

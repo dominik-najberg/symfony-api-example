@@ -1,3 +1,7 @@
 index:
     path: /greetings
     controller: App\Adapters\Http\GreetingHttpAdapter
+
+get-products:
+    path: /products
+    controller: App\Adapters\Http\GetProductsHttpAdapter
