@@ -2,8 +2,10 @@
 
 namespace App\Tests\Feature\Adapters\Http;
 
+use App\Domain\Product\Product;
 use App\Tests\Util\DataProvider\ProductDataProvider;
 use App\Tests\Util\Seeder\DbSeeder;
+use App\Tests\Util\Seeder\DbTableTruncator;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +19,7 @@ class GetProductsHttpAdapterTest extends WebTestCase
         parent::setUp();
         $this->client  = static::createClient();
         $entityManager = self::$container->get('doctrine')->getManager();
+        (new DbTableTruncator($entityManager))->truncate(Product::class);
         (new DbSeeder($entityManager))->load(ProductDataProvider::singleProduct());
     }
 
@@ -25,8 +28,6 @@ class GetProductsHttpAdapterTest extends WebTestCase
      */
     public function shouldGetHttpOkResponse(): void
     {
-        $this->markTestSkipped('we need behat');
-
         $this->client->request('GET', sprintf('/products'));
         $response = $this->client->getResponse();
 
@@ -38,11 +39,33 @@ class GetProductsHttpAdapterTest extends WebTestCase
      */
     public function shouldGetProductsInResponse(): void
     {
-        $this->markTestSkipped('we need behat');
         $this->client->request('GET', sprintf('/products'));
         $response = $this->client->getResponse();
 
         $content = $response->getContent();
         self::assertJson($content);
+        self::assertJsonStringEqualsJsonString($this->getValidJsonReply(), $content);
+    }
+
+    /**
+     * @return string
+     */
+    private function getValidJsonReply(): string
+    {
+        return <<<JSON
+{
+  "data": [
+    {
+      "type": "products",
+      "id": "82e00d1b-b8a9-4011-a5aa-a5e92c3e2021",
+      "attributes": {
+        "title": "One interesting product",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+        "price": "1000 USD"
+      }
+    }
+  ]
+}
+JSON;
     }
 }

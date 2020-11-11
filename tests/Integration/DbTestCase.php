@@ -3,6 +3,7 @@
 namespace App\Tests\Integration;
 
 use App\Tests\Util\Seeder\DbSeeder;
+use App\Tests\Util\Seeder\DbTableTruncator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -14,12 +15,8 @@ class DbTestCase extends KernelTestCase
     {
         $this->entityManager = self::$container->get('doctrine')->getManager();
 
-        $connection       = $this->entityManager->getConnection();
-        $databasePlatform = $connection->getDatabasePlatform();
-        $query            = $databasePlatform->getTruncateTableSQL(
-            $this->entityManager->getClassMetadata($className)->getTableName()
-        );
-        $connection->executeStatement($query);
+        $truncator = new DbTableTruncator($this->entityManager);
+        $truncator->truncate($className);
     }
 
     protected function seedDb(array $entities): void

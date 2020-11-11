@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Repository;
 
+use App\Application\Query\GetProducts;
+use App\Application\Query\ViewModel\ProductDTO;
 use App\Domain\Product\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -12,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Product[]    findAll()
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DoctrineProductRepository extends ServiceEntityRepository
+class DoctrineProductRepository extends ServiceEntityRepository implements GetProducts
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -52,5 +54,25 @@ class DoctrineProductRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->persist($product);
         $this->getEntityManager()->flush(); // TODO flush in a better moment
+    }
+
+    public function getProducts(): array
+    {
+        return
+            $this
+                ->createQueryBuilder('product')
+                ->select(
+                    sprintf(
+                        'new %s(
+                        product.id,
+                        product.name.name,
+                        product.description.description,
+                        product.amount,
+                        product.currency)',
+                        ProductDTO::class
+                    )
+                )
+                ->getQuery()
+                ->getResult();
     }
 }

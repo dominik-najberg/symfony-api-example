@@ -2,24 +2,27 @@
 
 namespace App\Adapters\Http\Response;
 
-use Ramsey\Uuid\Uuid;
+use App\Application\Query\ViewModel\ProductDTO;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetProductsResponse extends JsonResponse
 {
-    public static function fromProductDTO(): GetProductsResponse
+    public static function fromProductDTOs(array $products): GetProductsResponse
     {
         return new self(
             [
-                'data' => [
-                    'type'       => 'products',
-                    'id'         => Uuid::uuid4(), // TODO fake for now
-                    'attributes' => [
-                        'name'        => 'that is a product',
-                        'description' => 'The shortest article. Ever.',
-                        'price'       => '100 PLN',
+                'data' => array_map(
+                    fn(ProductDTO $product): array => [
+                        'type'       => 'products',
+                        'id'         => $product->id(),
+                        'attributes' => [
+                            'title'       => $product->title(),
+                            'description' => $product->description(),
+                            'price'       => sprintf('%s %s', $product->amount(), $product->currency()),
+                        ]
                     ],
-                ],
+                    $products
+                ),
             ]
         );
     }
