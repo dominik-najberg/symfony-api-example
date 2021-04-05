@@ -4,11 +4,12 @@ namespace App\Infrastructure\Repository;
 
 use App\Application\Query\GetProducts;
 use App\Application\Query\ViewModel\ProductDTO;
+use App\Application\Repository\ProductRepository;
 use App\Domain\Product\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class DoctrineProductRepository extends ServiceEntityRepository implements GetProducts
+class DoctrineProductRepository extends ServiceEntityRepository implements ProductRepository, GetProducts
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -43,7 +43,7 @@ class PostProductHttpAdapterTest extends WebTestCase
         $this->client->request('POST', '/products', [
             'id'          => Uuid::uuid4()->toString(),
             'name'        => 'Product name',
-            'description' => 'Simple description',
+            'description' => str_repeat('Simple description that is at least 100 chars long... ', 2),
             'amount'      => 1000,
             'currency'    => 'PLN',
         ]);

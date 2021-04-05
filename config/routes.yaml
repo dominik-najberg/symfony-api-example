@@ -10,4 +10,4 @@ get-products:
 post-products:
   path: /products
   methods: POST
-  controller: App\Adapters\Http\PostProductHttpAdapter
+  controller: App\Adapters\Http\CreateProductHttpAdapter

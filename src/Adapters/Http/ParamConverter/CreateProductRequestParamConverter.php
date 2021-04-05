@@ -2,18 +2,18 @@
 
 namespace App\Adapters\Http\ParamConverter;
 
-use App\Adapters\Http\Request\PostProductRequest;
+use App\Adapters\Http\Request\CreateProductRequest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class PostProductRequestParamConverter implements ParamConverterInterface
+class CreateProductRequestParamConverter implements ParamConverterInterface
 {
-    private const SUPPORTED_CLASS = PostProductRequest::class;
+    private const SUPPORTED_CLASS = CreateProductRequest::class;
 
     public function apply(Request $request, ParamConverter $configuration): void
     {
-        $request->attributes->set($configuration->getName(), PostProductRequest::fromRequest($request));
+        $request->attributes->set($configuration->getName(), CreateProductRequest::fromRequest($request));
     }
 
     public function supports(ParamConverter $configuration): bool

@@ -2,10 +2,15 @@
 
 namespace App\Adapters\Http\Request;
 
+use App\Domain\Product\Description;
+use App\Domain\Product\Name;
+use Money\Currency;
+use Money\Money;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 
-class PostProductRequest
+class CreateProductRequest
 {
     private string $id;
     private string $name;
@@ -24,14 +29,21 @@ class PostProductRequest
 
     public static function fromRequest(Request $request): self
     {
-        $id          = $request->request->get('id');
-        $name        = $request->request->get('name');
-        $description = $request->request->get('description');
-        $amount      = (int)$request->request->get('amount');
-        $currency    = $request->request->get('currency');
-
         try {
-            $self = new self($id, $name, $description, $amount, $currency);
+            $id           = Uuid::fromString($request->request->get('id'));
+            $name         = new Name($request->request->get('name'));
+            $description  = new Description($request->request->get('description'));
+            $amount       = (int)$request->request->get('amount');
+            $currencyCode = $request->request->get('currency');
+            $money        = new Money($amount, new Currency($currencyCode));
+
+            $self = new self(
+                $id->toString(),
+                $name->name(),
+                $description->description(),
+                (int)$money->getAmount(),
+                $money->getCurrency()->getCode(),
+            );
         } catch (\TypeError|\Exception $e) {
             throw new BadRequestException($e->getMessage());
         }
