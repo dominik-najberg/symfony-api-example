@@ -2,12 +2,12 @@
 
 namespace App\Application\Query;
 
-use App\Domain\Product\Product;
+use App\Application\Query\ViewModel\ProductDTO;
 
 interface GetProducts
 {
     /**
-     * @return Product[]
+     * @return ProductDTO[]
      */
     public function getProducts(): array;
 }
