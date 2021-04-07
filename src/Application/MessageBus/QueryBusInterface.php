@@ -5,6 +5,8 @@ namespace App\Application\MessageBus;
 interface QueryBusInterface
 {
     /**
+     * @param mixed $query
+     *
      * @return mixed
      */
     public function query($query);
