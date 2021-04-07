@@ -14,7 +14,7 @@ class ProductCreated
     private string $amount;
     private string $currency;
 
-    public function __construct(string $id, string $name, string $description, string $amount, string $currency)
+    private function __construct(string $id, string $name, string $description, string $amount, string $currency)
     {
         $this->id          = $id;
         $this->name        = $name;
