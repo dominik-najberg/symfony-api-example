@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Application\Query\ViewModel;
+namespace App\Tests\Unit\Application\Query\ViewModel;
 
 use App\Application\Query\ViewModel\ProductDTO;
 use PHPUnit\Framework\TestCase;

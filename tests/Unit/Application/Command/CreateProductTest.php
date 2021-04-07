@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Application\Command;
+namespace App\Tests\Unit\Application\Command;
 
 use App\Application\Command\CreateProduct;
 use PHPUnit\Framework\TestCase;
