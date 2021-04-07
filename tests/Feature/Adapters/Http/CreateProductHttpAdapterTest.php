@@ -42,11 +42,12 @@ class CreateProductHttpAdapterTest extends WebTestCase
      */
     public function shouldGetHttpCreatedResponse(): void
     {
-        $id          = Uuid::uuid4()->toString();
-        $productName = 'Product name';
-        $description = str_repeat('Simple description that is at least 100 chars long... ', 2);
-        $amount      = 1000;
-        $currency    = 'PLN';
+        $id           = Uuid::uuid4()->toString();
+        $productName  = 'Product name';
+        $description  = str_repeat('Simple description that is at least 100 chars long... ', 2);
+        $amount       = 1000;
+        $currency     = 'PLN';
+        $expectedJson = $this->makeJsonApiReply($id, $productName, $description, $amount, $currency);
 
         $this->client->request('POST', '/products', [
             'id'          => $id,
@@ -59,6 +60,8 @@ class CreateProductHttpAdapterTest extends WebTestCase
 
         self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
 
+        self::assertJsonStringEqualsJsonString($expectedJson, $response->getContent());
+
         /** @var Product $actual */
         $actual = $this->manager->find(Product::class, $id);
 
@@ -66,5 +69,28 @@ class CreateProductHttpAdapterTest extends WebTestCase
         self::assertEquals($description, $actual->description()->description());
         self::assertEquals($amount, (int)$actual->price()->getAmount());
         self::assertEquals($currency, $actual->price()->getCurrency()->getCode());
+    }
+
+    private function makeJsonApiReply(string $id, string $productName, string $description, int $amount, string $currency): string
+    {
+        return sprintf(
+            '{
+                "data": {
+                    "type": "products",
+                    "id": "%s",
+                    "attributes": {
+                        "name": "%s",
+                        "description": "%s",
+                        "amount": %d,
+                        "currency": "%s"
+                    }
+                }
+            }',
+            $id,
+            $productName,
+            $description,
+            $amount,
+            $currency
+        );
     }
 }
