@@ -3,7 +3,7 @@
 namespace App\Adapters\Http;
 
 use App\Adapters\Http\Response\GreetingResponse;
-use App\Application\Port\Query\Greetings;
+use App\Application\Repository\Greetings;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

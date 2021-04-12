@@ -31,6 +31,7 @@ class ProductRepositoryTest extends DbTestCase
     {
         $expected = ProductAssembler::new()->assemble();
         $this->repository->save($expected);
+        //manager->clear();
 
         $actual = $this->entityManager->find(Product::class, $expected->id());
         self::assertEquals($actual, $expected);

@@ -3,7 +3,7 @@
 namespace App\Tests\Unit\Application\Adapters\Http;
 
 use App\Adapters\Http\GreetingHttpAdapter;
-use App\Application\Port\Query\Greetings;
+use App\Application\Repository\Greetings;
 use App\Domain\Greeting\Greeting;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;

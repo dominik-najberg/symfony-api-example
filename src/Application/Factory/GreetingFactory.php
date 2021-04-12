@@ -2,7 +2,7 @@
 
 namespace App\Application\Factory;
 
-use App\Application\Port\Query\Greetings;
+use App\Application\Repository\Greetings;
 use App\Domain\Greeting\Greeting;
 
 class GreetingFactory implements Greetings

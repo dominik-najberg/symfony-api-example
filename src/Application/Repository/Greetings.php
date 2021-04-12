@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\Port\Query;
+namespace App\Application\Repository;
 
 interface Greetings
 {
