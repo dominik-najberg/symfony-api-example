@@ -3,10 +3,10 @@
 namespace App\Application\Command;
 
 use App\Application\Repository\ProductRepository;
-use App\Domain\Product\Description;
 use App\Domain\Product\Event\ProductCreated;
-use App\Domain\Product\Name;
 use App\Domain\Product\Product;
+use App\Domain\Product\Value\Description;
+use App\Domain\Product\Value\Name;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\Uuid;

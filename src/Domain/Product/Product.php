@@ -2,6 +2,8 @@
 
 namespace App\Domain\Product;
 
+use App\Domain\Product\Value\Description;
+use App\Domain\Product\Value\Name;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\UuidInterface;

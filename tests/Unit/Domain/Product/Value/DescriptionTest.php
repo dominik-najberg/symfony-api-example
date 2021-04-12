@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Unit\Domain\Product;
+namespace App\Tests\Unit\Domain\Product\Value;
 
-use App\Domain\Product\Description;
 use App\Domain\Product\Exception\InvalidDescription;
+use App\Domain\Product\Value\Description;
 use PHPUnit\Framework\TestCase;
 
 class DescriptionTest extends TestCase
@@ -29,6 +29,6 @@ class DescriptionTest extends TestCase
         $description = 'too short';
         $this->expectException(InvalidDescription::class);
 
-        new Description($description);
+        new \App\Domain\Product\Value\Description($description);
     }
 }

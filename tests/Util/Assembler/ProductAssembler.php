@@ -2,9 +2,9 @@
 
 namespace App\Tests\Util\Assembler;
 
-use App\Domain\Product\Description;
-use App\Domain\Product\Name;
 use App\Domain\Product\Product;
+use App\Domain\Product\Value\Description;
+use App\Domain\Product\Value\Name;
 use Money\Money;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;

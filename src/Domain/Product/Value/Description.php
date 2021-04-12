@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Domain\Product;
+namespace App\Domain\Product\Value;
 
 use App\Domain\Product\Exception\InvalidDescription;
 
