@@ -6,5 +6,5 @@ use App\Domain\Product\Product;
 
 interface ProductRepository
 {
-    public function save(Product $product): void;
+    public function add(Product $product): void;
 }

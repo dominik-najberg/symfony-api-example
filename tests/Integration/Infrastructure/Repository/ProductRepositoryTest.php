@@ -30,7 +30,7 @@ class ProductRepositoryTest extends DbTestCase
     public function shouldSaveToDB(): void
     {
         $expected = ProductAssembler::new()->assemble();
-        $this->repository->save($expected);
+        $this->repository->add($expected);
         //manager->clear();
 
         $actual = $this->entityManager->find(Product::class, $expected->id());

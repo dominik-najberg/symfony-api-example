@@ -16,10 +16,9 @@ class DoctrineProductRepository extends ServiceEntityRepository implements Produ
         parent::__construct($registry, Product::class);
     }
 
-    public function save(Product $product): void
+    public function add(Product $product): void
     {
         $this->getEntityManager()->persist($product);
-        $this->getEntityManager()->flush(); // TODO flush in a better moment
     }
 
     /**

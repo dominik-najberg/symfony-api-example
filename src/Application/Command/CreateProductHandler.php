@@ -33,7 +33,7 @@ class CreateProductHandler implements MessageHandlerInterface
             new Money($command->amount(), new Currency($command->currency()))
         );
 
-        $this->products->save($product);
+        $this->products->add($product);
 
         $this->messageBus->dispatch(
             ProductCreated::fromProduct($product)

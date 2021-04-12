@@ -13,3 +13,11 @@ framework:
         routing:
             # Route your messages to the transports
             'App\Infrastructure\EventListener\EventStoreMessage': sns
+
+        default_bus: command.bus
+        buses:
+            command.bus:
+                middleware:
+                    - doctrine_transaction
+            event.bus:
+                default_middleware: allow_no_handlers
