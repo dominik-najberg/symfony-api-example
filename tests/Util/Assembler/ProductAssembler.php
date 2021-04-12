@@ -36,7 +36,7 @@ class ProductAssembler
 
     public function assemble(): Product
     {
-        return new Product(
+        return Product::create(
             $this->id,
             $this->name,
             $this->description,

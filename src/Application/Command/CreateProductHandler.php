@@ -26,7 +26,7 @@ class CreateProductHandler implements MessageHandlerInterface
 
     public function __invoke(CreateProduct $command)
     {
-        $product = new Product(
+        $product = Product::create(
             Uuid::fromString($command->id()),
             new Name($command->name()),
             new Description($command->description()),

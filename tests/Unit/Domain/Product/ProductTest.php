@@ -21,7 +21,7 @@ class ProductTest extends TestCase
         $description = new Description(str_repeat('product description ', 10));
         $price       = Money::USD(1000);
 
-        $actual = new Product($id, $name, $description, $price);
+        $actual = Product::create($id, $name, $description, $price);
 
         self::assertEquals($id, $actual->id());
         self::assertEquals($name, $actual->name());
