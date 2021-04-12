@@ -34,8 +34,8 @@ class DoctrineProductRepository extends ServiceEntityRepository implements Produ
                     sprintf(
                         'new %s(
                         product.id,
-                        product.name.name,
-                        product.description.description,
+                        product.name,
+                        product.description,
                         product.amount,
                         product.currency)',
                         ProductDTO::class

@@ -7,8 +7,8 @@
             name="App\Domain\Product\Product"
             repository-class="App\Infrastructure\Repository\DoctrineProductRepository">
         <id name="id" type="uuid" column="id"/>
-        <embedded name="name" class="App\Domain\Product\Name" use-column-prefix="false"/>
-        <embedded name="description" class="App\Domain\Product\Description" use-column-prefix="false"/>
+        <field name="name" type="string" length="100" nullable="false"/>
+        <field name="description" type="string"/>
         <field name="amount" type="string"/>
         <field name="currency" type="string" length="3"/>
     </entity>

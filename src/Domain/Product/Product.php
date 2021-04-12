@@ -9,16 +9,16 @@ use Ramsey\Uuid\UuidInterface;
 class Product
 {
     private UuidInterface $id;
-    private Name          $name;
-    private Description   $description;
+    private string        $name;
+    private string        $description;
     private string        $amount;
     private string        $currency;
 
     public function __construct(UuidInterface $id, Name $name, Description $description, Money $price)
     {
         $this->id          = $id;
-        $this->name        = $name;
-        $this->description = $description;
+        $this->name        = $name->name();
+        $this->description = $description->description();
         $this->amount      = $price->getAmount();
         $this->currency    = $price->getCurrency()->getCode();
     }
@@ -30,12 +30,12 @@ class Product
 
     public function name(): Name
     {
-        return $this->name;
+        return new Name($this->name);
     }
 
     public function description(): Description
     {
-        return $this->description;
+        return new Description($this->description);
     }
 
     public function price(): Money
