@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\Unit\Application\Factory;
+namespace App\Tests\Unit\Infrastructure\Factory;
 
-use App\Application\Factory\GreetingFactory;
+use App\Infrastructure\Factory\GreetingFactory;
 use PHPUnit\Framework\TestCase;
 
 class GreetingFactoryTest extends TestCase

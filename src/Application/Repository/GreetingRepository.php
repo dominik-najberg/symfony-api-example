@@ -2,7 +2,7 @@
 
 namespace App\Application\Repository;
 
-interface Greetings
+interface GreetingRepository
 {
     public function byName(string $name);
 }

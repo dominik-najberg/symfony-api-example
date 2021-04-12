@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Factory;
+namespace App\Infrastructure\Factory;
 
-use App\Application\Repository\Greetings;
+use App\Application\Repository\GreetingRepository;
 use App\Domain\Greeting\Greeting;
 
-class GreetingFactory implements Greetings
+class GreetingFactory implements GreetingRepository
 {
     public function byName(string $name): Greeting
     {

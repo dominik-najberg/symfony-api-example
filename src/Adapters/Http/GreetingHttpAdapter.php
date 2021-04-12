@@ -3,15 +3,15 @@
 namespace App\Adapters\Http;
 
 use App\Adapters\Http\Response\GreetingResponse;
-use App\Application\Repository\Greetings;
+use App\Application\Repository\GreetingRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class GreetingHttpAdapter
 {
-    private Greetings $greetings;
+    private GreetingRepository $greetings;
 
-    public function __construct(Greetings $greetings)
+    public function __construct(GreetingRepository $greetings)
     {
         $this->greetings = $greetings;
     }

@@ -3,7 +3,7 @@
 namespace App\Tests\Unit\Application\Adapters\Http;
 
 use App\Adapters\Http\GreetingHttpAdapter;
-use App\Application\Repository\Greetings;
+use App\Application\Repository\GreetingRepository;
 use App\Domain\Greeting\Greeting;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class GreetingHttpAdapterTest extends TestCase
         $name     = 'Dominik';
         $greeting = Greeting::byName($name);
 
-        $greetings = $this->createMock(Greetings::class);
+        $greetings = $this->createMock(GreetingRepository::class);
         $greetings
             ->expects(self::once())
             ->method('byName')
