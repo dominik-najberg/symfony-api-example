@@ -11,14 +11,14 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class DoctrineProductRepository extends ServiceEntityRepository implements ProductRepository, ProductsViewRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $manager)
     {
-        parent::__construct($registry, Product::class);
+        parent::__construct($manager, Product::class);
     }
 
     public function add(Product $product): void
     {
-        $this->getEntityManager()->persist($product);
+        $this->_em->persist($product);
     }
 
     /**
