@@ -21,7 +21,7 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
     public function onKernelException(ExceptionEvent $event): void
     {
         $e          = $event->getThrowable();
-        $statusCode = $e instanceof HttpException ? $e->getStatusCode() : Response::HTTP_INTERNAL_SERVER_ERROR;
+        $statusCode = $this->getHttpCode($e);
 
         $response = new JsonResponse(
             [
@@ -37,5 +37,10 @@ class ApiExceptionSubscriber implements EventSubscriberInterface
         );
 
         $event->setResponse($response);
+    }
+
+    private function getHttpCode(\Throwable $e): int
+    {
+        return $e instanceof HttpException ? $e->getStatusCode() : Response::HTTP_INTERNAL_SERVER_ERROR;
     }
 }
