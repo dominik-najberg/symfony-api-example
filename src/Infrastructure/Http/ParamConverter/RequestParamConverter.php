@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Http\ParamConverter;
+namespace App\Infrastructure\Http\ParamConverter;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
