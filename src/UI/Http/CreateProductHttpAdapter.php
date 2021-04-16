@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Http;
+namespace App\UI\Http;
 
-use App\Adapters\Http\Request\CreateProductRequest;
-use App\Adapters\Http\Response\CreateProductResponse;
 use App\Application\Command\CreateProduct;
+use App\UI\Http\Request\CreateProductRequest;
+use App\UI\Http\Response\CreateProductResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Messenger\MessageBusInterface;
 

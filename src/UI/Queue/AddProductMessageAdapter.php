@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Queue;
+namespace App\UI\Queue;
 
-use App\Adapters\Queue\Message\ProductArrived;
 use App\Application\Command\CreateProduct;
+use App\UI\Queue\Message\ProductArrived;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class AddProductMessageAdapter

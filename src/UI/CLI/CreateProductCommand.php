@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Adapters\CLI;
+namespace App\UI\CLI;
 
 use App\Application\Command\CreateProduct;
 use Ramsey\Uuid\Uuid;

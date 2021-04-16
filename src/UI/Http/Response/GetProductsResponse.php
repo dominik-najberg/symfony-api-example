@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Http\Response;
+namespace App\UI\Http\Response;
 
 use App\Application\Query\ViewModel\ProductDTO;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -12,7 +12,7 @@ class GetProductsResponse extends JsonResponse
         return new self(
             [
                 'data' => array_map(
-                    fn(ProductDTO $product): array => [
+                    static fn(ProductDTO $product): array => [
                         'type'       => 'products',
                         'id'         => $product->id(),
                         'attributes' => [

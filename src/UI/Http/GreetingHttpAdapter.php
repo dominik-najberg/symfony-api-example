@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Http;
+namespace App\UI\Http;
 
-use App\Adapters\Http\Response\GreetingResponse;
 use App\Application\Repository\GreetingRepository;
+use App\UI\Http\Response\GreetingResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

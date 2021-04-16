@@ -1,13 +1,13 @@
 index:
   path: /greetings
-  controller: App\Adapters\Http\GreetingHttpAdapter
+  controller: App\UI\Http\GreetingHttpAdapter
 
 get-products:
   path: /products
   methods: GET
-  controller: App\Adapters\Http\GetProductsHttpAdapter
+  controller: App\UI\Http\GetProductsHttpAdapter
 
 post-products:
   path: /products
   methods: POST
-  controller: App\Adapters\Http\CreateProductHttpAdapter
+  controller: App\UI\Http\CreateProductHttpAdapter

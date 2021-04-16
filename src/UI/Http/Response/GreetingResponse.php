@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Http\Response;
+namespace App\UI\Http\Response;
 
 use App\Domain\Greeting\Greeting;
 use Symfony\Component\HttpFoundation\JsonResponse;

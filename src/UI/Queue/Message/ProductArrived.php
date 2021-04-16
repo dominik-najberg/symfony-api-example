@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Queue\Message;
+namespace App\UI\Queue\Message;
 
 class ProductArrived
 {

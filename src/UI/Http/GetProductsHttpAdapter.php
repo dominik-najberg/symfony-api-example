@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Http;
+namespace App\UI\Http;
 
-use App\Adapters\Http\Response\GetProductsResponse;
 use App\Application\MessageBus\QueryBusInterface;
 use App\Application\Query\GetProducts;
 use App\Application\Query\ViewModel\ProductDTO;
+use App\UI\Http\Response\GetProductsResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetProductsHttpAdapter

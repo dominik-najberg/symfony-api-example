@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Tests\Feature\Adapters\Http;
+namespace App\Tests\Feature\UI\Http;
 
 use App\Domain\Product\Product;
 use App\Tests\Util\DataProvider\ProductDataProvider;

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Adapters\Http\Request;
+namespace App\UI\Http\Request;
 
 use App\Domain\Product\Value\Description;
 use App\Domain\Product\Value\Name;
