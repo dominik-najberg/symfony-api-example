@@ -8,7 +8,7 @@ use App\UI\Http\Response\CreateProductResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class CreateProductHttpAdapter
+class CreateProductHttpController
 {
     private MessageBusInterface $commandBus;
 

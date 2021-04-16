@@ -7,7 +7,7 @@ use App\UI\Http\Response\GreetingResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GreetingHttpAdapter
+class GreetingHttpController
 {
     private GreetingRepository $greetings;
 

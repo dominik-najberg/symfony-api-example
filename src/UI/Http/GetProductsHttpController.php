@@ -8,7 +8,7 @@ use App\Application\Query\ViewModel\ProductDTO;
 use App\UI\Http\Response\GetProductsResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class GetProductsHttpAdapter
+class GetProductsHttpController
 {
     private QueryBusInterface $queryBus;
 
