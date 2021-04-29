@@ -7,19 +7,16 @@ use App\Infrastructure\Repository\DoctrineProductRepository;
 use App\Tests\Integration\DbTestCase;
 use App\Tests\Util\Assembler\ProductAssembler;
 use App\Tests\Util\DataProvider\ProductDataProvider;
-use Doctrine\ORM\EntityManagerInterface;
 
-class ProductRepositoryTest extends DbTestCase
+class DoctrineProductRepositoryTest extends DbTestCase
 {
-    private EntityManagerInterface    $manager;
     private DoctrineProductRepository $repository;
 
     protected function setUp(): void
     {
-        self::bootKernel();
+        parent::setUp();
 
-        $this->manager    = self::$container->get('doctrine')->getManager();
-        $this->repository = $this->manager->getRepository(Product::class);
+        $this->repository = $this->entityManager->getRepository(Product::class);
 
         $this->truncateTable(Product::class);
         $this->seedDb(ProductDataProvider::products());
@@ -32,8 +29,8 @@ class ProductRepositoryTest extends DbTestCase
     {
         $expected = ProductAssembler::new()->assemble();
         $this->repository->add($expected);
-        $this->manager->flush();
-        $this->manager->clear();
+        $this->entityManager->flush();
+        $this->entityManager->clear();
 
         $actual = $this->entityManager->find(Product::class, $expected->id());
         self::assertEquals($actual, $expected);

@@ -5,23 +5,36 @@ namespace App\Application\Command;
 class CreateProduct
 {
     private string $id;
+    private string $categoryId;
     private string $name;
     private string $description;
-    private int    $amount;
+    private int $amount;
     private string $currency;
 
-    public function __construct(string $id, string $name, string $description, int $amount, string $currency)
-    {
-        $this->id          = $id;
-        $this->name        = $name;
+    public function __construct(
+        string $id,
+        string $categoryId,
+        string $name,
+        string $description,
+        int $amount,
+        string $currency
+    ) {
+        $this->id = $id;
+        $this->categoryId = $categoryId;
+        $this->name = $name;
         $this->description = $description;
-        $this->amount      = $amount;
-        $this->currency    = $currency;
+        $this->amount = $amount;
+        $this->currency = $currency;
     }
 
     public function id(): string
     {
         return $this->id;
+    }
+
+    public function categoryId(): string
+    {
+        return $this->categoryId;
     }
 
     public function name(): string

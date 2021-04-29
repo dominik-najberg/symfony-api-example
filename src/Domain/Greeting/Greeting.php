@@ -17,7 +17,7 @@ class Greeting
         return new self($name);
     }
 
-    public function greeting(): string
+    public function greet(): string
     {
         return sprintf(self::GREETING_TEMPLATE, $this->name);
     }

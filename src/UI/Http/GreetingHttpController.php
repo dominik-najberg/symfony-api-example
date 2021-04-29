@@ -16,6 +16,7 @@ class GreetingHttpController
         $this->greetings = $greetings;
     }
 
+    // No query bus used yet
     public function __invoke(Request $request): Response
     {
         return GreetingResponse::fromGreeting(

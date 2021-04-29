@@ -15,7 +15,7 @@ class GreetingTest extends TestCase
         $expected = 'Hello, Dominik!';
         $actual   = Greeting::byName('Dominik');
 
-        self::assertEquals($expected, $actual->greeting());
+        self::assertEquals($expected, $actual->greet());
     }
 
 }

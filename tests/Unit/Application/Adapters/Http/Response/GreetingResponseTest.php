@@ -3,7 +3,7 @@
 namespace App\Tests\Unit\Application\Adapters\Http\Response;
 
 use App\Domain\Greeting\Greeting;
-use App\Tests\Unit\Util\GreetingDataProvider;
+use App\Tests\Util\DataProvider\GreetingDataProvider;
 use App\UI\Http\Response\GreetingResponse;
 use PHPUnit\Framework\TestCase;
 

@@ -7,7 +7,7 @@ use App\Tests\Util\Assembler\ProductAssembler;
 
 class ProductDataProvider
 {
-    private const NUMBER_OF_DOMAINS = 10;
+    private const NUMBER_OF_PRODUCTS = 10;
 
     /**
      * @return Product[]
@@ -16,7 +16,7 @@ class ProductDataProvider
     {
         $products = [];
 
-        for ($i = 0; $i < self::NUMBER_OF_DOMAINS; $i++) {
+        for ($i = 0; $i < self::NUMBER_OF_PRODUCTS; $i++) {
             $products[] = ProductAssembler::new()
                 ->withName(sprintf('Interesting product %d', $i))
                 ->withDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit. ')

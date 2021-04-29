@@ -11,12 +11,18 @@ class DbTestCase extends KernelTestCase
 {
     protected EntityManagerInterface $entityManager;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        self::bootKernel();
+        $this->entityManager = self::$container->get('doctrine')->getManager();
+    }
+
+
     protected function truncateTable(string $className): void
     {
-        $this->entityManager = self::$container->get('doctrine')->getManager();
-
-        $truncator = new DbTableTruncator($this->entityManager);
-        $truncator->truncate($className);
+        (new DbTableTruncator($this->entityManager))->truncate($className);
     }
 
     protected function seedDb(array $entities): void

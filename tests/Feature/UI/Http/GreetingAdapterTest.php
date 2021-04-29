@@ -2,7 +2,7 @@
 
 namespace App\Tests\Feature\UI\Http;
 
-use App\Tests\Unit\Util\GreetingDataProvider;
+use App\Tests\Util\DataProvider\GreetingDataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 

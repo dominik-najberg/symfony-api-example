@@ -13,8 +13,8 @@ class GreetingFactoryTest extends TestCase
     public function shouldCreate(): void
     {
         $expectedGreetingMessage = 'Hello, Fabian!';
-        $factory                 = new GreetingFactory();
-        $actual                  = $factory->byName('Fabian');
-        self::assertEquals($expectedGreetingMessage, $actual->greeting());
+        $factory = new GreetingFactory();
+        $actual = $factory->byName('Fabian');
+        self::assertEquals($expectedGreetingMessage, $actual->greet());
     }
 }

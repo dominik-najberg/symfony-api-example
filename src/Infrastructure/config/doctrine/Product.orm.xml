@@ -6,7 +6,8 @@
     <entity
             name="App\Domain\Product\Product"
             repository-class="App\Infrastructure\Repository\DoctrineProductRepository">
-        <id name="id" type="uuid" column="id"/>
+        <id name="id" type="uuid"/>
+        <field name="categoryId" type="uuid"/>
         <field name="name" type="string" length="100" nullable="false"/>
         <field name="description" type="string"/>
         <field name="amount" type="string"/>

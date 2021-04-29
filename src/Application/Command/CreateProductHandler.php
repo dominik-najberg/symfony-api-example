@@ -28,6 +28,7 @@ class CreateProductHandler implements MessageHandlerInterface
     {
         $product = Product::create(
             Uuid::fromString($command->id()),
+            Uuid::fromString($command->categoryId()),
             new Name($command->name()),
             new Description($command->description()),
             new Money($command->amount(), new Currency($command->currency()))

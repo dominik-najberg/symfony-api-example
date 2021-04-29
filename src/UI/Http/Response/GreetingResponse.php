@@ -15,7 +15,7 @@ class GreetingResponse extends JsonResponse
                 'type'       => 'greetings',
                 'id'         => 'UUID',
                 'attributes' => [
-                    'greeting' => $greeting->greeting(),
+                    'greeting' => $greeting->greet(),
                 ],
             ],
         ], Response::HTTP_OK);

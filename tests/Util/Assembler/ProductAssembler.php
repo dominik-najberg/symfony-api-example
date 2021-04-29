@@ -11,23 +11,33 @@ use Ramsey\Uuid\UuidInterface;
 
 class ProductAssembler
 {
-    private UuidInterface $id;
-    private Name          $name;
-    private Description   $description;
-    private Money         $price;
+    private const USER_ID = '302d1503-dc2f-4f3b-9350-21ce2ee55f1c';
 
-    private function __construct(UuidInterface $id, Name $name, Description $description, Money $price)
-    {
-        $this->id          = $id;
-        $this->name        = $name;
+    private UuidInterface $id;
+    private UuidInterface $userId;
+    private Name $name;
+    private Description $description;
+    private Money $price;
+
+    private function __construct(
+        UuidInterface $id,
+        UuidInterface $userId,
+        Name $name,
+        Description $description,
+        Money $price
+    ) {
+        $this->id = $id;
+        $this->userId = $userId;
+        $this->name = $name;
         $this->description = $description;
-        $this->price       = $price;
+        $this->price = $price;
     }
 
     public static function new(): ProductAssembler
     {
         return new self(
             Uuid::uuid4(),
+            Uuid::fromString(self::USER_ID),
             new Name('product name'),
             new Description(str_repeat('description', 10)),
             Money::USD(700),
@@ -38,6 +48,7 @@ class ProductAssembler
     {
         return Product::create(
             $this->id,
+            $this->userId,
             $this->name,
             $this->description,
             $this->price,
@@ -60,7 +71,7 @@ class ProductAssembler
 
     public function withDescription(string $description): ProductAssembler
     {
-        $this->description = new Description(str_repeat($description, 10));
+        $this->description = new Description(substr(str_repeat($description, 5), 0, 254));
 
         return $this;
     }

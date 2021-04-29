@@ -13,32 +13,43 @@ use Symfony\Component\HttpFoundation\Request;
 class CreateProductRequest
 {
     private string $id;
+    private string $categoryId;
     private string $name;
     private string $description;
-    private int    $amount;
+    private int $amount;
     private string $currency;
 
-    private function __construct(string $id, string $name, string $description, int $amount, string $currency)
-    {
-        $this->id          = $id;
-        $this->name        = $name;
+    private function __construct(
+        string $id,
+        string $categoryId,
+        string $name,
+        string $description,
+        int $amount,
+        string $currency
+    ) {
+        $this->id = $id;
+        $this->categoryId = $categoryId;
+        $this->name = $name;
         $this->description = $description;
-        $this->amount      = $amount;
-        $this->currency    = $currency;
+        $this->amount = $amount;
+        $this->currency = $currency;
     }
+
 
     public static function fromRequest(Request $request): self
     {
         try {
-            $id           = Uuid::fromString($request->request->get('id'));
-            $name         = new Name($request->request->get('name'));
-            $description  = new Description($request->request->get('description'));
-            $amount       = (int)$request->request->get('amount');
+            $id = Uuid::fromString($request->request->get('id'));
+            $categoryId = Uuid::fromString($request->request->get('categoryId'));
+            $name = new Name($request->request->get('name'));
+            $description = new Description($request->request->get('description'));
+            $amount = (int)$request->request->get('amount');
             $currencyCode = $request->request->get('currency');
-            $money        = new Money($amount, new Currency($currencyCode));
+            $money = new Money($amount, new Currency($currencyCode));
 
             $self = new self(
                 $id->toString(),
+                $categoryId->toString(),
                 $name->name(),
                 $description->description(),
                 (int)$money->getAmount(),
@@ -54,6 +65,11 @@ class CreateProductRequest
     public function id(): string
     {
         return $this->id;
+    }
+
+    public function categoryId(): string
+    {
+        return $this->categoryId;
     }
 
     public function name(): string

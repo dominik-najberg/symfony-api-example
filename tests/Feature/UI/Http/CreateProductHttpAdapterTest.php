@@ -42,20 +42,26 @@ class CreateProductHttpAdapterTest extends WebTestCase
      */
     public function shouldGetHttpCreatedResponse(): void
     {
-        $id           = Uuid::uuid4()->toString();
-        $productName  = 'Product name';
-        $description  = str_repeat('Simple description that is at least 100 chars long... ', 2);
-        $amount       = 1000;
-        $currency     = 'PLN';
+        $id = Uuid::uuid4()->toString();
+        $categoryId = Uuid::uuid4()->toString();
+        $productName = 'Product name';
+        $description = str_repeat('Simple description that is at least 100 chars long... ', 2);
+        $amount = 1000;
+        $currency = 'PLN';
         $expectedJson = $this->makeJsonApiReply($id, $productName, $description, $amount, $currency);
 
-        $this->client->request('POST', '/products', [
-            'id'          => $id,
-            'name'        => $productName,
-            'description' => $description,
-            'amount'      => $amount,
-            'currency'    => $currency,
-        ]);
+        $this->client->request(
+            'POST',
+            '/products',
+            [
+                'id' => $id,
+                'categoryId' => $categoryId,
+                'name' => $productName,
+                'description' => $description,
+                'amount' => $amount,
+                'currency' => $currency,
+            ]
+        );
         $response = $this->client->getResponse();
 
         self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());

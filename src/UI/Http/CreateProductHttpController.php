@@ -21,6 +21,7 @@ class CreateProductHttpController
     {
         $command = new CreateProduct(
             $createProductRequest->id(),
+            $createProductRequest->categoryId(),
             $createProductRequest->name(),
             $createProductRequest->description(),
             $createProductRequest->amount(),
