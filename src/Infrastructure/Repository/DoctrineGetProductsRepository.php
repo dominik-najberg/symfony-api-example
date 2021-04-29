@@ -4,11 +4,12 @@ namespace App\Infrastructure\Repository;
 
 use App\Application\Exception\ProductsNotFoundException;
 use App\Application\Query\ViewModel\ProductDTO;
+use App\Application\Repository\GetProductsRepository;
 use App\Domain\Product\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\UuidInterface;
 
-class DoctrineGetProductsRepository implements \App\Application\Repository\GetProductsRepository
+class DoctrineGetProductsRepository implements GetProductsRepository
 {
     private EntityManagerInterface $entityManager;
 
@@ -25,9 +26,17 @@ class DoctrineGetProductsRepository implements \App\Application\Repository\GetPr
         $tasks = $this->entityManager->createQueryBuilder()
             ->from(Product::class, 'p')
             ->select(
-                sprintf('new %s(t.content, t.dueDate)', ProductDTO::class)
+                sprintf(
+                    'new %s(
+                    p.id,
+                    p.name,
+                    p.description,
+                    p.amount,
+                    p.currency)',
+                    ProductDTO::class
+                )
             )
-            ->where('t.taskListId = :userId')->setParameter('userId', $categoryId->toString())
+            ->where('p.categoryId = :categoryId')->setParameter('categoryId', $categoryId->toString())
             ->getQuery()
             ->getResult();
 

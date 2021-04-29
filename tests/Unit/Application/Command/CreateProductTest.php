@@ -12,15 +12,17 @@ class CreateProductTest extends TestCase
      */
     public function shouldCreate(): void
     {
-        $id          = 'uuid';
-        $name        = 'name';
+        $id = 'uuid';
+        $categoryId = 'categoryId';
+        $name = 'name';
         $description = 'description';
         $amount      = 123;
         $currency    = 'PLN';
 
-        $actual = new CreateProduct($id, $name, $description, $amount, $currency);
+        $actual = new CreateProduct($id, $categoryId, $name, $description, $amount, $currency);
 
         self::assertEquals($id, $actual->id());
+        self::assertEquals($categoryId, $actual->categoryId());
         self::assertEquals($name, $actual->name());
         self::assertEquals($description, $actual->description());
         self::assertEquals($amount, $actual->amount());
