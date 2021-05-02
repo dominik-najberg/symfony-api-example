@@ -29,6 +29,17 @@ class DescriptionTest extends TestCase
         $description = 'too short';
         $this->expectException(InvalidDescription::class);
 
-        new \App\Domain\Product\Value\Description($description);
+        new Description($description);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldThrowExceptionOnDescriptionTooLong(): void
+    {
+        $description = str_repeat('too loooooooong', 100);
+        $this->expectException(InvalidDescription::class);
+
+        new Description($description);
     }
 }
