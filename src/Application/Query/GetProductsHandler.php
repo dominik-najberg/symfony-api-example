@@ -3,14 +3,14 @@
 namespace App\Application\Query;
 
 use App\Application\Query\ViewModel\ProductDTO;
-use App\Application\Repository\ProductsViewRepository;
+use App\Application\Repository\GetProductsRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class GetProductsHandler implements MessageHandlerInterface
 {
-    private ProductsViewRepository $products;
+    private GetProductsRepository $products;
 
-    public function __construct(ProductsViewRepository $products)
+    public function __construct(GetProductsRepository $products)
     {
         $this->products = $products;
     }
@@ -20,6 +20,6 @@ class GetProductsHandler implements MessageHandlerInterface
      */
     public function __invoke(GetProducts $query): array
     {
-        return $this->products->getProducts();
+        return $this->products->getByCategoryId($query->categoryId());
     }
 }

@@ -28,7 +28,7 @@ class GetProductsHttpAdapterTest extends WebTestCase
      */
     public function shouldGetHttpOkResponse(): void
     {
-        $this->client->request('GET', sprintf('/products'));
+        $this->client->request('GET', sprintf(sprintf('/products?category_id=%s', ProductDataProvider::CATEGORY_ID)));
         $response = $this->client->getResponse();
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
@@ -39,7 +39,7 @@ class GetProductsHttpAdapterTest extends WebTestCase
      */
     public function shouldGetProductsInResponse(): void
     {
-        $this->client->request('GET', sprintf('/products'));
+        $this->client->request('GET', sprintf(sprintf('/products?category_id=%s', ProductDataProvider::CATEGORY_ID)));
         $response = $this->client->getResponse();
 
         $content = $response->getContent();

@@ -7,21 +7,22 @@ use App\Domain\Product\Value\Name;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 
 class CreateProductRequest
 {
-    private string $id;
-    private string $categoryId;
+    private UuidInterface $id;
+    private UuidInterface $categoryId;
     private string $name;
     private string $description;
     private int $amount;
     private string $currency;
 
     private function __construct(
-        string $id,
-        string $categoryId,
+        UuidInterface $id,
+        UuidInterface $categoryId,
         string $name,
         string $description,
         int $amount,
@@ -48,8 +49,8 @@ class CreateProductRequest
             $money = new Money($amount, new Currency($currencyCode));
 
             $self = new self(
-                $id->toString(),
-                $categoryId->toString(),
+                $id,
+                $categoryId,
                 $name->name(),
                 $description->description(),
                 (int)$money->getAmount(),
@@ -62,12 +63,12 @@ class CreateProductRequest
         return $self;
     }
 
-    public function id(): string
+    public function id(): UuidInterface
     {
         return $this->id;
     }
 
-    public function categoryId(): string
+    public function categoryId(): UuidInterface
     {
         return $this->categoryId;
     }

@@ -9,7 +9,6 @@ use App\Domain\Product\Value\Description;
 use App\Domain\Product\Value\Name;
 use Money\Currency;
 use Money\Money;
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -27,8 +26,8 @@ class CreateProductHandler implements MessageHandlerInterface
     public function __invoke(CreateProduct $command)
     {
         $product = Product::create(
-            Uuid::fromString($command->id()),
-            Uuid::fromString($command->categoryId()),
+            $command->id(),
+            $command->categoryId(),
             new Name($command->name()),
             new Description($command->description()),
             new Money($command->amount(), new Currency($command->currency()))

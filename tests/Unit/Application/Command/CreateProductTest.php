@@ -4,6 +4,7 @@ namespace App\Tests\Unit\Application\Command;
 
 use App\Application\Command\CreateProduct;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class CreateProductTest extends TestCase
 {
@@ -12,12 +13,12 @@ class CreateProductTest extends TestCase
      */
     public function shouldCreate(): void
     {
-        $id = 'uuid';
-        $categoryId = 'categoryId';
+        $id = Uuid::uuid4();
+        $categoryId = Uuid::uuid4();
         $name = 'name';
         $description = 'description';
-        $amount      = 123;
-        $currency    = 'PLN';
+        $amount = 123;
+        $currency = 'PLN';
 
         $actual = new CreateProduct($id, $categoryId, $name, $description, $amount, $currency);
 

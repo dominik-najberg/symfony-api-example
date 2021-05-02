@@ -2,18 +2,20 @@
 
 namespace App\Application\Command;
 
+use Ramsey\Uuid\UuidInterface;
+
 class CreateProduct
 {
-    private string $id;
-    private string $categoryId;
+    private UuidInterface $id;
+    private UuidInterface $categoryId;
     private string $name;
     private string $description;
     private int $amount;
     private string $currency;
 
     public function __construct(
-        string $id,
-        string $categoryId,
+        UuidInterface $id,
+        UuidInterface $categoryId,
         string $name,
         string $description,
         int $amount,
@@ -27,12 +29,12 @@ class CreateProduct
         $this->currency = $currency;
     }
 
-    public function id(): string
+    public function id(): UuidInterface
     {
         return $this->id;
     }
 
-    public function categoryId(): string
+    public function categoryId(): UuidInterface
     {
         return $this->categoryId;
     }
