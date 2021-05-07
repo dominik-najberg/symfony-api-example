@@ -2,7 +2,7 @@
 
 namespace App\Tests\Feature\UI\Http;
 
-use App\Domain\Product\Product;
+use App\Entity\Product;
 use App\Tests\Util\DataProvider\ProductDataProvider;
 use App\Tests\Util\Seeder\DbSeeder;
 use App\Tests\Util\Seeder\DbTableTruncator;

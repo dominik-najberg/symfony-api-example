@@ -1,0 +1,45 @@
+<?php declare(strict_types=1);
+
+namespace App\Controller;
+
+use App\Entity\Product;
+use App\Repository\DoctrineProductRepository;
+use Ramsey\Uuid\Uuid;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+
+class GetProductsHttpController
+{
+    private DoctrineProductRepository $productRepository;
+
+    public function __construct(DoctrineProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
+    public function __invoke(Request $request): JsonResponse
+    {
+        $categoryId = Uuid::fromString($request->query->get('category_id'));
+
+        $products = $this->productRepository->findBy(
+            ['categoryId' => $categoryId]
+        );
+
+        return new JsonResponse(
+            [
+                'data' => array_map(
+                    static fn(Product $product): array => [
+                        'type' => 'products',
+                        'id' => $product->id(),
+                        'attributes' => [
+                            'title' => $product->title(),
+                            'description' => $product->description(),
+                            'price' => sprintf('%s %s', $product->amount(), $product->currency()),
+                        ],
+                    ],
+                    $products
+                ),
+            ]
+        );
+    }
+}

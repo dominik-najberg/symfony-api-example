@@ -3,8 +3,8 @@
 namespace App\Tests\Integration\Infrastructure\Repository;
 
 use App\Application\Exception\ProductsNotFoundException;
-use App\Domain\Product\Product;
-use App\Infrastructure\Repository\DoctrineGetProductsRepository;
+use App\Entity\Product;
+use App\Repository\DoctrineGetProductsRepository;
 use App\Tests\Integration\DbTestCase;
 use App\Tests\Util\DataProvider\ProductDataProvider;
 use Ramsey\Uuid\Uuid;

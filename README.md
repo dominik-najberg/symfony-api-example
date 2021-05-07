@@ -1,7 +1,3 @@
-# symfony-api-example
+# symfony-cr-api-example
 
-Symfony is supposed to be a technological detail. Here is my proposal on how to do it.
-
-The tests are your documentation.
-
-All suggestions and discussion welcome.
+This serves as a bunch of anti-patterns and bad examples. Do not follow or use it.

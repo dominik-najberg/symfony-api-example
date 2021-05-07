@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Infrastructure\Factory;
 
-use App\Infrastructure\Factory\GreetingFactory;
+use App\Factory\GreetingFactory;
 use PHPUnit\Framework\TestCase;
 
 class GreetingFactoryTest extends TestCase
