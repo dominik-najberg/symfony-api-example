@@ -12,7 +12,7 @@ framework:
 
         routing:
             # Route your messages to the transports
-            'App\Infrastructure\EventListener\EventStoreMessage': sns
+#            'App\Infrastructure\EventListener\EventStoreMessage': sns
 
         default_bus: command.bus
         buses:

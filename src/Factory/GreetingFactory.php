@@ -2,10 +2,9 @@
 
 namespace App\Factory;
 
-use App\Application\Repository\GreetingRepository;
 use App\Entity\Greeting;
 
-class GreetingFactory implements GreetingRepository
+class GreetingFactory
 {
     public function byName(string $name): Greeting
     {

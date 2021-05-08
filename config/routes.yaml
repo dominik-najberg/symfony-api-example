@@ -5,9 +5,9 @@ index:
 get-products:
   path: /products
   methods: GET
-  controller: App\Controller\GetProductsHttpController
+  controller: App\Controller\ProductsController::productList
 
 post-products:
   path: /products
   methods: POST
-  controller: App\Controller\CreateProductHttpController
+  controller: App\Controller\ProductsController::newProduct

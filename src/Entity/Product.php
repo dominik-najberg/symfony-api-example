@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Value\Description;
 use App\Entity\Value\Name;
-use App\Factory\UuidV4Generator;
+use Doctrine\ORM\Id\UuidGenerator;
 use Doctrine\ORM\Mapping as ORM;
 use Money\Currency;
 use Money\Money;
@@ -20,7 +20,7 @@ class Product
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UuidV4Generator::class)
+     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      */
     private UuidInterface $id;
 

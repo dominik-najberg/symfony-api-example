@@ -29,13 +29,23 @@ class ProductsController extends AbstractController
      */
     public function newProduct(Request $request): JsonResponse
     {
-        $id = Uuid::fromString($request->request->get('id'));
-        $categoryId = Uuid::fromString($request->request->get('categoryId'));
-        $name = new Name($request->request->get('name'));
-        $description = new Description($request->request->get('description'));
-        $amount = (int)$request->request->get('amount');
-        $currencyCode = $request->request->get('currency');
-        $money = new Money($amount, new Currency($currencyCode));
+        try {
+            $id = Uuid::fromString($request->request->get('id'));
+            $categoryId = Uuid::fromString($request->request->get('categoryId'));
+            $name = new Name($request->request->get('name'));
+            $description = new Description($request->request->get('description'));
+            $amount = (int)$request->request->get('amount');
+            $currencyCode = $request->request->get('currency');
+            $money = new Money($amount, new Currency($currencyCode));
+        } catch (\Throwable $e) {
+            return new JsonResponse(
+                [
+                    'error' => true,
+                    'message' => $e->getMessage(),
+                ],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
 
         $product = new Product(
             $id,
@@ -51,12 +61,12 @@ class ProductsController extends AbstractController
             [
                 'data' => [
                     'type' => 'products',
-                    'id' => $id,
+                    'id' => $id->toString(),
                     'attributes' => [
-                        'name' => $name,
-                        'description' => $description,
-                        'amount' => $money->getAmount(),
-                        'currency' => $money->getCurrency()->getCode(),
+                        'name' => $product->name()->name(),
+                        'description' => $product->description()->description(),
+                        'amount' => (int)$product->price()->getAmount(),
+                        'currency' => $product->price()->getCurrency()->getCode(),
                     ],
                 ],
             ],
@@ -82,9 +92,13 @@ class ProductsController extends AbstractController
                         'type' => 'products',
                         'id' => $product->id(),
                         'attributes' => [
-                            'title' => $product->title(),
+                            'title' => $product->name(),
                             'description' => $product->description(),
-                            'price' => sprintf('%s %s', $product->amount(), $product->currency()),
+                            'price' => sprintf(
+                                '%s %s',
+                                $product->price()->getAmount(),
+                                $product->price()->getCurrency()
+                            ),
                         ],
                     ],
                     $products
