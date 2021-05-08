@@ -3,11 +3,12 @@
 namespace App\Controller;
 
 use App\Factory\GreetingFactory;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GreetingController
+class GreetingController extends AbstractController
 {
     private GreetingFactory $greetings;
 
