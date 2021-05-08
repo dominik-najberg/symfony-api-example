@@ -15,15 +15,15 @@ class ProductAssembler
 
     private UuidInterface $id;
     private UuidInterface $categoryId;
-    private Name $name;
-    private Description $description;
+    private string $name;
+    private string $description;
     private Money $price;
 
     private function __construct(
         UuidInterface $id,
         UuidInterface $categoryId,
-        Name $name,
-        Description $description,
+        string $name,
+        string $description,
         Money $price
     ) {
         $this->id = $id;
@@ -38,8 +38,8 @@ class ProductAssembler
         return new self(
             Uuid::uuid4(),
             Uuid::fromString(self::CATEGORY_ID),
-            new Name('product name'),
-            new Description(str_repeat('description', 10)),
+            'product name',
+            str_repeat('description', 10),
             Money::USD(700),
         );
     }
@@ -71,14 +71,14 @@ class ProductAssembler
 
     public function withName(string $name): ProductAssembler
     {
-        $this->name = new Name($name);
+        $this->name = $name;
 
         return $this;
     }
 
     public function withDescription(string $description): ProductAssembler
     {
-        $this->description = new Description(substr(str_repeat($description, 5), 0, 254));
+        $this->description = substr(str_repeat($description, 5), 0, 254);
 
         return $this;
     }
