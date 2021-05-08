@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Value\Description;
 use App\Entity\Value\Name;
+use App\Exception\InvalidDescription;
+use App\Exception\InvalidName;
 use Doctrine\ORM\Id\UuidGenerator;
 use Doctrine\ORM\Mapping as ORM;
 use Money\Currency;
@@ -52,10 +54,22 @@ class Product
     public function __construct(
         UuidInterface $id,
         UuidInterface $categoryId,
-        Name $name,
-        Description $description,
+        string $name,
+        string $description,
         Money $price
     ) {
+        if (strlen($description) < 100) {
+            throw InvalidDescription::minLengthRequirement(100);
+        }
+
+        if (strlen($description) >= 255) {
+            throw InvalidDescription::maxLengthRequirement(255);
+        }
+
+        if (strlen($name) > 100) {
+            throw InvalidName::lengthRequirement(100);
+        }
+
         $this->id = $id;
         $this->categoryId = $categoryId;
         $this->name = $name->name();
