@@ -72,8 +72,8 @@ class Product
 
         $this->id = $id;
         $this->categoryId = $categoryId;
-        $this->name = $name->name();
-        $this->description = $description->description();
+        $this->name = $name;
+        $this->description = $description;
         $this->amount = $price->getAmount();
         $this->currency = $price->getCurrency()->getCode();
     }
@@ -88,14 +88,14 @@ class Product
         return $this->categoryId;
     }
 
-    public function name(): Name
+    public function name(): string
     {
-        return new Name($this->name);
+        return $this->name;
     }
 
-    public function description(): Description
+    public function description(): string
     {
-        return new Description($this->description);
+        return $this->description;
     }
 
     public function price(): Money
