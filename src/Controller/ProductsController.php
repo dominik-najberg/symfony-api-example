@@ -35,6 +35,8 @@ class ProductsController extends AbstractController
             $amount = (int)$request->request->get('amount');
             $currencyCode = $request->request->get('currency');
             $money = new Money($amount, new Currency($currencyCode));
+
+            $product = new Product($id, $categoryId, $name, $description, $money);
         } catch (\Throwable $e) {
             return new JsonResponse(
                 [
@@ -44,14 +46,6 @@ class ProductsController extends AbstractController
                 Response::HTTP_BAD_REQUEST
             );
         }
-
-        $product = new Product(
-            $id,
-            $categoryId,
-            $name,
-            $description,
-            $money
-        );
 
         $this->productRepository->save($product);
 

@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Value\Description;
-use App\Entity\Value\Name;
 use App\Exception\InvalidDescription;
 use App\Exception\InvalidName;
 use Doctrine\ORM\Id\UuidGenerator;
