@@ -1,8 +1,7 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace App\Controller;
 
-use App\Application\Command\CreateProduct;
 use App\Entity\Product;
 use App\Entity\Value\Description;
 use App\Entity\Value\Name;
@@ -10,11 +9,13 @@ use App\Repository\DoctrineProductRepository;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\Uuid;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-class CreateProductHttpController
+class ProductsController extends AbstractController
 {
     private DoctrineProductRepository $productRepository;
 
@@ -23,7 +24,10 @@ class CreateProductHttpController
         $this->productRepository = $productRepository;
     }
 
-    public function __invoke(Request $request): JsonResponse
+    /**
+     * @Route("/products", name="post-products", methods={"POST"})
+     */
+    public function newProduct(Request $request): JsonResponse
     {
         $id = Uuid::fromString($request->request->get('id'));
         $categoryId = Uuid::fromString($request->request->get('categoryId'));
@@ -57,6 +61,35 @@ class CreateProductHttpController
                 ],
             ],
             Response::HTTP_CREATED,
+        );
+    }
+
+    /**
+     * @Route("/products", name="get-products", methods={"GET"})
+     */
+    public function productList(Request $request): JsonResponse
+    {
+        $categoryId = Uuid::fromString($request->query->get('category_id'));
+
+        $products = $this->productRepository->findBy(
+            ['categoryId' => $categoryId]
+        );
+
+        return new JsonResponse(
+            [
+                'data' => array_map(
+                    static fn(Product $product): array => [
+                        'type' => 'products',
+                        'id' => $product->id(),
+                        'attributes' => [
+                            'title' => $product->title(),
+                            'description' => $product->description(),
+                            'price' => sprintf('%s %s', $product->amount(), $product->currency()),
+                        ],
+                    ],
+                    $products
+                ),
+            ]
         );
     }
 }

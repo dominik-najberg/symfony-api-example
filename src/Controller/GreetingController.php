@@ -2,13 +2,12 @@
 
 namespace App\Controller;
 
-use App\Application\Repository\GreetingRepository;
 use App\Factory\GreetingFactory;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GreetingHttpController
+class GreetingController
 {
     private GreetingFactory $greetings;
 

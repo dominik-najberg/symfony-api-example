@@ -2,7 +2,12 @@
 
 namespace App\Command;
 
-use App\Application\Command\CreateProduct;
+use App\Entity\Product;
+use App\Entity\Value\Description;
+use App\Entity\Value\Name;
+use App\Repository\DoctrineProductRepository;
+use Money\Currency;
+use Money\Money;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,7 +18,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateProductCommand extends Command
 {
-    private MessageBusInterface $commandBus;
+    private DoctrineProductRepository $productRepository;
 
     protected static $defaultName        = 'app:create-product';
     protected static $defaultDescription = 'Add a short description for your command';
@@ -21,7 +26,7 @@ class CreateProductCommand extends Command
     public function __construct(MessageBusInterface $commandBus)
     {
         parent::__construct(self::$defaultName);
-        $this->commandBus = $commandBus;
+        $this->productRepository = $commandBus;
     }
 
     protected function configure(): void
@@ -34,16 +39,15 @@ class CreateProductCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $this->commandBus->dispatch(
-            new CreateProduct(
-                Uuid::uuid4(),
-                Uuid::uuid4(),
-                $input->getArgument('product-name') ?: 'Product from CLI',
-                str_repeat('Long description ', 10),
-                1200,
-                'PLN',
-            )
+        $product = new Product(
+            Uuid::uuid4(),
+            Uuid::uuid4(),
+            new Name($input->getArgument('product-name') ?: 'Product from CLI'),
+            new Description(str_repeat('Long description ', 10)),
+            new Money(1200, new Currency('PLN'))
         );
+
+        $this->productRepository->add($product);
 
         $io->success('You have created a product.');
 
