@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Entity\Value\Description;
-use App\Entity\Value\Name;
 use App\Repository\DoctrineProductRepository;
 use Money\Currency;
 use Money\Money;
@@ -55,7 +53,7 @@ class ProductsController extends AbstractController
             $money
         );
 
-        $this->productRepository->add($product);
+        $this->productRepository->save($product);
 
         return new JsonResponse(
             [

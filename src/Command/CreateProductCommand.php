@@ -47,7 +47,7 @@ class CreateProductCommand extends Command
             new Money(1200, new Currency('PLN'))
         );
 
-        $this->productRepository->add($product);
+        $this->productRepository->save($product);
 
         $io->success('You have created a product.');
 
