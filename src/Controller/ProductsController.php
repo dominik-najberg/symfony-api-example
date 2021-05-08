@@ -92,8 +92,8 @@ class ProductsController extends AbstractController
                         'type' => 'products',
                         'id' => $product->id(),
                         'attributes' => [
-                            'title' => $product->name(),
-                            'description' => $product->description(),
+                            'title' => $product->name()->name(),
+                            'description' => $product->description()->description(),
                             'price' => sprintf(
                                 '%s %s',
                                 $product->price()->getAmount(),
