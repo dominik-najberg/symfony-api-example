@@ -2,7 +2,7 @@
 
 namespace App\UI\Http;
 
-use App\Entity\Product;
+use App\Domain\Product\Product;
 use App\Repository\DoctrineProductRepository;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

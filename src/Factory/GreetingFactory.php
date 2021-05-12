@@ -2,7 +2,7 @@
 
 namespace App\Factory;
 
-use App\Entity\Greeting;
+use App\Domain\Greeting\Greeting;
 
 class GreetingFactory
 {

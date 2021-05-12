@@ -3,7 +3,7 @@
 namespace App\Tests\Integration\Infrastructure\Repository;
 
 use App\Application\Exception\ProductsNotFoundException;
-use App\Entity\Product;
+use App\Domain\Product\Product;
 use App\Repository\DoctrineGetProductsRepository;
 use App\Tests\Integration\DbTestCase;
 use App\Tests\Util\DataProvider\ProductDataProvider;

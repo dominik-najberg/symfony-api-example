@@ -1,52 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\Domain\Product;
 
 use App\Exception\InvalidDescription;
 use App\Exception\InvalidName;
-use Doctrine\ORM\Id\UuidGenerator;
-use Doctrine\ORM\Mapping as ORM;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\UuidInterface;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\DoctrineProductRepository")
- * @ORM\Table(name="product")
- */
 class Product
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
-     */
     private UuidInterface $id;
-
-    /**
-     * @ORM\Column(type="uuid", unique=true)
-     */
     private UuidInterface $categoryId;
-
-    /**
-     * @ORM\Column(type="string")
-     */
     private string $name;
-
-    /**
-     * @ORM\Column(type="string")
-     */
     private string $description;
-
-    /**
-     * @ORM\Column(type="string")
-     */
     private string $amount;
-
-    /**
-     * @ORM\Column(type="string")
-     */
     private string $currency;
 
     public function __construct(

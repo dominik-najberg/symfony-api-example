@@ -2,7 +2,7 @@
 
 namespace App\Tests\Integration\Infrastructure\Repository;
 
-use App\Entity\Product;
+use App\Domain\Product\Product;
 use App\Repository\DoctrineProductRepository;
 use App\Tests\Integration\DbTestCase;
 use App\Tests\Util\Assembler\ProductAssembler;

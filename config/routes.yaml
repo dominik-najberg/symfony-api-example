@@ -1,6 +1,6 @@
 index:
     path: /greetings
-    controller: App\UI\Http\GreetingHttpController
+    controller: App\UI\Http\GetGreetingHttpController
 
 get-products:
     path: /products

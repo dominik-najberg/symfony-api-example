@@ -2,7 +2,7 @@
 
 namespace App\Tests\Util\DataProvider;
 
-use App\Entity\Product;
+use App\Domain\Product\Product;
 use App\Tests\Util\Assembler\ProductAssembler;
 
 class ProductDataProvider

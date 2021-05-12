@@ -2,7 +2,7 @@
 
 namespace App\Tests\Unit\Application\Adapters\Http\Response;
 
-use App\Entity\Greeting;
+use App\Domain\Greeting\Greeting;
 use App\Tests\Util\DataProvider\GreetingDataProvider;
 use App\UI\Http\Response\GreetingResponse;
 use PHPUnit\Framework\TestCase;

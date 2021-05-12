@@ -1,0 +1,17 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+            name="App\Entity\Product"
+            repository-class="App\Repository\DoctrineProductRepository">
+        <id name="id" type="uuid"/>
+        <field name="categoryId" type="uuid"/>
+        <field name="name" type="string" length="100" nullable="false"/>
+        <field name="description" type="string"/>
+        <field name="amount" type="string"/>
+        <field name="currency" type="string" length="3"/>
+    </entity>
+
+</doctrine-mapping>

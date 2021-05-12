@@ -2,7 +2,7 @@
 
 namespace App\Tests\Util\Assembler;
 
-use App\Entity\Product;
+use App\Domain\Product\Product;
 use App\Entity\Value\Description;
 use App\Entity\Value\Name;
 use Money\Money;
