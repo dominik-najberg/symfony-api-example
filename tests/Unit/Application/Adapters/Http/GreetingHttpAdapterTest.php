@@ -3,8 +3,8 @@
 namespace App\Tests\Unit\Application\Adapters\Http;
 
 use App\Application\Repository\GreetingRepository;
-use App\Controller\GreetingController;
 use App\Entity\Greeting;
+use App\UI\Http\GetGreetingHttpController;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -30,7 +30,7 @@ class GreetingHttpAdapterTest extends TestCase
             ->method('get')
             ->willReturn($name);
 
-        $actual = new GreetingController($greetings);
+        $actual = new GetGreetingHttpController($greetings);
         $actual($request);
     }
 }

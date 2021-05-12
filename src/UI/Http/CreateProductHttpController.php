@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\UI\Http;
 
 use App\Entity\Product;
 use App\Repository\DoctrineProductRepository;
@@ -11,9 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
-class ProductsController extends AbstractController
+class CreateProductHttpController extends AbstractController
 {
     private DoctrineProductRepository $productRepository;
 
@@ -22,10 +21,7 @@ class ProductsController extends AbstractController
         $this->productRepository = $productRepository;
     }
 
-    /**
-     * @Route("/products", name="post-products", methods={"POST"})
-     */
-    public function newProduct(Request $request): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         try {
             $id = Uuid::fromString($request->request->get('id'));
@@ -63,39 +59,6 @@ class ProductsController extends AbstractController
                 ],
             ],
             Response::HTTP_CREATED,
-        );
-    }
-
-    /**
-     * @Route("/products", name="get-products", methods={"GET"})
-     */
-    public function productList(Request $request): JsonResponse
-    {
-        $categoryId = Uuid::fromString($request->query->get('category_id'));
-
-        $products = $this->productRepository->findBy(
-            ['categoryId' => $categoryId]
-        );
-
-        return new JsonResponse(
-            [
-                'data' => array_map(
-                    static fn(Product $product): array => [
-                        'type' => 'products',
-                        'id' => $product->id(),
-                        'attributes' => [
-                            'title' => $product->name(),
-                            'description' => $product->description(),
-                            'price' => sprintf(
-                                '%s %s',
-                                $product->price()->getAmount(),
-                                $product->price()->getCurrency()
-                            ),
-                        ],
-                    ],
-                    $products
-                ),
-            ]
         );
     }
 }

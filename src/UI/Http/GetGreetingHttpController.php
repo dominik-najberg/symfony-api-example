@@ -1,15 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\UI\Http;
 
 use App\Factory\GreetingFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
-class GreetingController extends AbstractController
+class GetGreetingHttpController extends AbstractController
 {
     private GreetingFactory $greetings;
 
@@ -18,10 +17,7 @@ class GreetingController extends AbstractController
         $this->greetings = $greetings;
     }
 
-    /**
-     * @Route("/greetings")
-     */
-    public function index(Request $request): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         $greeting = $this->greetings->byName($request->get('name'));
 
