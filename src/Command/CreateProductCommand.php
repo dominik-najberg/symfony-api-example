@@ -5,7 +5,7 @@ namespace App\Command;
 use App\Domain\Product\Product;
 use App\Entity\Value\Description;
 use App\Entity\Value\Name;
-use App\Repository\DoctrineProductRepository;
+use App\Infrastructure\Repository\DoctrineProductRepository;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\Uuid;

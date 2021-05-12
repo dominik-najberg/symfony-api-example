@@ -19,5 +19,5 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Infrastructure/config/doctrine'
-                prefix: 'App\Entity'
+                prefix: 'App\Domain\Product'
                 alias: App

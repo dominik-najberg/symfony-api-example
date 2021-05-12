@@ -3,7 +3,7 @@
 namespace App\UI\Http;
 
 use App\Domain\Product\Product;
-use App\Repository\DoctrineProductRepository;
+use App\Infrastructure\Repository\DoctrineProductRepository;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\Uuid;
