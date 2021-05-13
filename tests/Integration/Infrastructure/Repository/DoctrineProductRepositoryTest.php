@@ -28,7 +28,7 @@ class DoctrineProductRepositoryTest extends DbTestCase
     public function shouldSaveToDB(): void
     {
         $expected = ProductAssembler::new()->assemble();
-        $this->repository->save($expected);
+        $this->repository->add($expected);
         $this->entityManager->flush();
         $this->entityManager->clear();
 

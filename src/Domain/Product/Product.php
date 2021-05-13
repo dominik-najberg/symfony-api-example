@@ -17,7 +17,7 @@ class Product
     private string $amount;
     private string $currency;
 
-    public function __construct(
+    private function __construct(
         UuidInterface $id,
         UuidInterface $categoryId,
         Name $name,
@@ -31,6 +31,18 @@ class Product
         $this->amount = $price->getAmount();
         $this->currency = $price->getCurrency()->getCode();
     }
+
+    public static function create(
+        UuidInterface $id,
+        UuidInterface $categoryId,
+        Name $name,
+        Description $description,
+        Money $price
+    ): self {
+
+        return new self($id, $categoryId, $name, $description, $price);
+    }
+
 
     public function id(): UuidInterface
     {

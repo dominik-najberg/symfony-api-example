@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Command;
+namespace App\UI\CLI;
 
 use App\Domain\Product\Product;
-use App\Entity\Value\Description;
-use App\Entity\Value\Name;
+use App\Domain\Product\Value\Description;
+use App\Domain\Product\Value\Name;
 use App\Infrastructure\Repository\DoctrineProductRepository;
 use Money\Currency;
 use Money\Money;
@@ -14,19 +14,18 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateProductCommand extends Command
 {
-    private DoctrineProductRepository $productRepository;
 
     protected static $defaultName        = 'app:create-product';
     protected static $defaultDescription = 'Add a short description for your command';
+    private DoctrineProductRepository $productRepository;
 
-    public function __construct(MessageBusInterface $commandBus)
+    public function __construct(DoctrineProductRepository $productRepository)
     {
         parent::__construct(self::$defaultName);
-        $this->productRepository = $commandBus;
+        $this->productRepository = $productRepository;
     }
 
     protected function configure(): void
@@ -47,7 +46,7 @@ class CreateProductCommand extends Command
             new Money(1200, new Currency('PLN'))
         );
 
-        $this->productRepository->save($product);
+        $this->productRepository->add($product);
 
         $io->success('You have created a product.');
 

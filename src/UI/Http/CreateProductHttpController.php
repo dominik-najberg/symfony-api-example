@@ -34,7 +34,7 @@ class CreateProductHttpController extends AbstractController
             $currencyCode = $request->request->get('currency');
             $money = new Money($amount, new Currency($currencyCode));
 
-            $product = new Product($id, $categoryId, $name, $description, $money);
+            $product = Product::create($id, $categoryId, $name, $description, $money);
         } catch (\Throwable $e) {
             return new JsonResponse(
                 [
@@ -45,7 +45,7 @@ class CreateProductHttpController extends AbstractController
             );
         }
 
-        $this->productRepository->save($product);
+        $this->productRepository->add($product);
 
         return new JsonResponse(
             [
