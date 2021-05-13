@@ -3,6 +3,8 @@
 namespace App\UI\Http;
 
 use App\Domain\Product\Product;
+use App\Domain\Product\Value\Description;
+use App\Domain\Product\Value\Name;
 use App\Infrastructure\Repository\DoctrineProductRepository;
 use Money\Currency;
 use Money\Money;
@@ -26,8 +28,8 @@ class CreateProductHttpController extends AbstractController
         try {
             $id = Uuid::fromString($request->request->get('id'));
             $categoryId = Uuid::fromString($request->request->get('categoryId'));
-            $name = $request->request->get('name');
-            $description = $request->request->get('description');
+            $name = new Name($request->request->get('name'));
+            $description = new Description($request->request->get('description'));
             $amount = (int)$request->request->get('amount');
             $currencyCode = $request->request->get('currency');
             $money = new Money($amount, new Currency($currencyCode));
@@ -51,8 +53,8 @@ class CreateProductHttpController extends AbstractController
                     'type' => 'products',
                     'id' => $id->toString(),
                     'attributes' => [
-                        'name' => $product->name(),
-                        'description' => $product->description(),
+                        'name' => $product->name()->name(),
+                        'description' => $product->description()->description(),
                         'amount' => (int)$product->price()->getAmount(),
                         'currency' => $product->price()->getCurrency()->getCode(),
                     ],

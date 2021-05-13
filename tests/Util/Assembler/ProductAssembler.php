@@ -3,8 +3,8 @@
 namespace App\Tests\Util\Assembler;
 
 use App\Domain\Product\Product;
-use App\Entity\Value\Description;
-use App\Entity\Value\Name;
+use App\Domain\Product\Value\Description;
+use App\Domain\Product\Value\Name;
 use Money\Money;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -49,8 +49,8 @@ class ProductAssembler
         return new Product(
             $this->id,
             $this->categoryId,
-            $this->name,
-            $this->description,
+            new Name($this->name),
+            new Description($this->description),
             $this->price,
         );
     }

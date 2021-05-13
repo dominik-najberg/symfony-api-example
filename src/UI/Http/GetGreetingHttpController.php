@@ -2,7 +2,7 @@
 
 namespace App\UI\Http;
 
-use App\Factory\GreetingFactory;
+use App\Infrastructure\Factory\GreetingFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

@@ -2,8 +2,8 @@
 
 namespace App\Tests\Unit\Domain\Product\Value;
 
+use App\Domain\Product\Exception\InvalidDescription;
 use App\Entity\Value\Description;
-use App\Exception\InvalidDescription;
 use PHPUnit\Framework\TestCase;
 
 class DescriptionTest extends TestCase

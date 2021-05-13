@@ -2,8 +2,8 @@
 
 namespace App\Tests\Unit\Domain\Product\Value;
 
+use App\Domain\Product\Exception\InvalidName;
 use App\Entity\Value\Name;
-use App\Exception\InvalidName;
 use PHPUnit\Framework\TestCase;
 
 class NameTest extends TestCase

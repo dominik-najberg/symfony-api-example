@@ -2,8 +2,8 @@
 
 namespace App\Domain\Product;
 
-use App\Exception\InvalidDescription;
-use App\Exception\InvalidName;
+use App\Domain\Product\Value\Description;
+use App\Domain\Product\Value\Name;
 use Money\Currency;
 use Money\Money;
 use Ramsey\Uuid\UuidInterface;
@@ -20,26 +20,14 @@ class Product
     public function __construct(
         UuidInterface $id,
         UuidInterface $categoryId,
-        string $name,
-        string $description,
+        Name $name,
+        Description $description,
         Money $price
     ) {
-        if (strlen($description) < 100) {
-            throw InvalidDescription::minLengthRequirement(100);
-        }
-
-        if (strlen($description) >= 255) {
-            throw InvalidDescription::maxLengthRequirement(255);
-        }
-
-        if (strlen($name) > 100) {
-            throw InvalidName::lengthRequirement(100);
-        }
-
         $this->id = $id;
         $this->categoryId = $categoryId;
-        $this->name = $name;
-        $this->description = $description;
+        $this->name = $name->name();
+        $this->description = $description->description();
         $this->amount = $price->getAmount();
         $this->currency = $price->getCurrency()->getCode();
     }
@@ -54,14 +42,14 @@ class Product
         return $this->categoryId;
     }
 
-    public function name(): string
+    public function name(): Name
     {
-        return $this->name;
+        return new Name($this->name);
     }
 
-    public function description(): string
+    public function description(): Description
     {
-        return $this->description;
+        return new Description($this->description);
     }
 
     public function price(): Money

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Exception;
+namespace App\Domain\Product\Exception;
 
 class InvalidDescription extends \Exception
 {

@@ -2,7 +2,6 @@
 
 namespace App\Tests\Unit\Infrastructure\Factory;
 
-use App\Factory\GreetingFactory;
 use PHPUnit\Framework\TestCase;
 
 class GreetingFactoryTest extends TestCase
@@ -13,7 +12,7 @@ class GreetingFactoryTest extends TestCase
     public function shouldCreate(): void
     {
         $expectedGreetingMessage = 'Hello, Fabian!';
-        $factory = new GreetingFactory();
+        $factory = new \App\Infrastructure\Factory\GreetingFactory();
         $actual = $factory->byName('Fabian');
         self::assertEquals($expectedGreetingMessage, $actual->greet());
     }
