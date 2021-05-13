@@ -17,7 +17,8 @@ class CreateProductHttpAdapterTest extends WebTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->client  = static::createClient();
+        $this->client = static::createClient();
+        $this->manager = self::$container->get('doctrine')->getManager();
     }
 
     /**

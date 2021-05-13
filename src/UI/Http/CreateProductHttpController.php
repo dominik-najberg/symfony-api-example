@@ -2,39 +2,36 @@
 
 namespace App\UI\Http;
 
-use App\Domain\Product\Product;
-use App\Domain\Product\Value\Description;
-use App\Domain\Product\Value\Name;
-use App\Infrastructure\Repository\DoctrineProductRepository;
-use Money\Currency;
-use Money\Money;
-use Ramsey\Uuid\Uuid;
+use App\Application\Command\CreateProduct;
+use App\UI\Http\Request\CreateProductRequest;
+use App\UI\Http\Response\CreateProductResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateProductHttpController extends AbstractController
 {
-    private DoctrineProductRepository $productRepository;
+    private MessageBusInterface $commandBus;
 
-    public function __construct(DoctrineProductRepository $productRepository)
+    public function __construct(MessageBusInterface $commandBus)
     {
-        $this->productRepository = $productRepository;
+        $this->commandBus = $commandBus;
     }
 
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(CreateProductRequest $createProductRequest): JsonResponse
     {
         try {
-            $id = Uuid::fromString($request->request->get('id'));
-            $categoryId = Uuid::fromString($request->request->get('categoryId'));
-            $name = new Name($request->request->get('name'));
-            $description = new Description($request->request->get('description'));
-            $amount = (int)$request->request->get('amount');
-            $currencyCode = $request->request->get('currency');
-            $money = new Money($amount, new Currency($currencyCode));
+            $createProduct = new CreateProduct(
+                $createProductRequest->id(),
+                $createProductRequest->categoryId(),
+                $createProductRequest->name(),
+                $createProductRequest->description(),
+                $createProductRequest->amount(),
+                $createProductRequest->currency()
+            );
 
-            $product = Product::create($id, $categoryId, $name, $description, $money);
+            $this->commandBus->dispatch($createProduct);
         } catch (\Throwable $e) {
             return new JsonResponse(
                 [
@@ -45,22 +42,6 @@ class CreateProductHttpController extends AbstractController
             );
         }
 
-        $this->productRepository->add($product);
-
-        return new JsonResponse(
-            [
-                'data' => [
-                    'type' => 'products',
-                    'id' => $id->toString(),
-                    'attributes' => [
-                        'name' => $product->name()->name(),
-                        'description' => $product->description()->description(),
-                        'amount' => (int)$product->price()->getAmount(),
-                        'currency' => $product->price()->getCurrency()->getCode(),
-                    ],
-                ],
-            ],
-            Response::HTTP_CREATED,
-        );
+        return CreateProductResponse::fromCommand($createProduct);
     }
 }
