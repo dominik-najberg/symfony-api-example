@@ -1,82 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-help()
-{
-    echo "Script that can be used to manage development environment."
-    echo ""
-    echo "Usage: dev [COMMAND]"
-    echo ""
-    echo "Commands:"
-    echo "  start               Start environment"
-    echo "  stop                Stop environment"
-    echo "  down                Down environment"
-    echo "  app                 Log to docker php sh"
-    echo "  diff             Execute doctrine migration"
-    echo "  clear-docker        Stop ALL the running containers"
-    echo "  clear-db            Drop schema, create, exec migration and seeds"
-    echo ""
+function up() {
+  docker-compose up -d
 }
 
-
-start()
-{
-    echo "##### STARTING DEVELOPMENT ENVIRONMENT #####"
-    echo ""
-    bash -c "docker-compose -f docker-compose.yml up -d"
-}
-
-
-stop()
-{
-    echo "##### STOPPING DEVELOPMENT ENVIRONMENT #####"
-    echo ""
-    bash -c "docker-compose -f docker-compose.yml stop"
-}
-
-down()
-{
-    echo "##### STOPPING DEVELOPMENT ENVIRONMENT #####"
-    echo ""
-    bash -c "docker-compose -f docker-compose.yml down"
-}
-
-cleardocker()
-{
-    echo "##### STOPPING ALL RUNNING DOCKER CONTAINERS #####"
-    echo ""
-    docker stop $(docker ps -q)
-}
-
-dbdiff()
-{
-    echo "##### Create doctrine diffs #####"
-    echo ""
-    bash -c "docker-compose -f docker-compose.yml exec app php bin/console doctrine:migrations:diff"
-}
-
-cleardb()
-{
-    echo "##### Clear database #####"
-    bash -c "docker-compose -f docker-compose.yml exec app php bin/console doctrine:schema:drop --force"
-    bash -c "docker-compose -f docker-compose.yml exec app php bin/console doctrine:schema:create"
-    bash -c "docker-compose -f docker-compose.yml exec app php bin/console doctrine:migrations:migrate --no-interaction"
-    echo "done."
-}
-
-app()
-{
-    echo "running app inside docker container"
-    bash -c "docker-compose -f docker-compose.yml exec app bash"
+function init() {
+  docker-compose run app bin/console doctrine:schema:drop -f
+  docker-compose run app bin/console doctrine:schema:create
+  docker-compose run app bin/phpunit
 }
 
 case $1 in
-    start) start ;;
-    stop) stop ;;
-    down) down ;;
-    app) app ;;
-    clear-db) cleardb ;;
-    clear-docker) cleardocker ;;
-    diff) dbdiff ;;
-    *) help ;;
+"init") init ;;
+"up") up ;;
+*) docker-compose run app $1 $2 "$3" ;;
 esac
-

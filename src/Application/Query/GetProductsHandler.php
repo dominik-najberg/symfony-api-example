@@ -18,7 +18,7 @@ class GetProductsHandler implements MessageHandlerInterface
     /**
      * @return ProductDTO[]
      */
-    public function __invoke(GetProducts $query): array
+    public function __invoke(GetProducts $query): iterable
     {
         return $this->products->getByCategoryId($query->categoryId());
     }
