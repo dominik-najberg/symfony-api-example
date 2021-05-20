@@ -31,3 +31,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Command Handlers
+    App\Application\Command\CreateProductHandler:
+        tags: [ messenger.message_handler ]
+
+    # Query Handlers
+    App\Application\Query\GetProductsHandler:
+        tags: [ messenger.message_handler ]
+
+    # Event Listeners
+    App\Infrastructure\EventListener\ProductCreatedListener:
+        tags: [ messenger.message_handler ]
