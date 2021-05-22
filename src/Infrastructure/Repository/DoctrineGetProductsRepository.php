@@ -23,7 +23,7 @@ class DoctrineGetProductsRepository implements GetProductsRepository
      */
     public function getByCategoryId(UuidInterface $categoryId): iterable
     {
-        $tasks = $this->entityManager->createQueryBuilder()
+        $products = $this->entityManager->createQueryBuilder()
             ->from(Product::class, 'p')
             ->select(
                 sprintf(
@@ -40,10 +40,10 @@ class DoctrineGetProductsRepository implements GetProductsRepository
             ->getQuery()
             ->getResult();
 
-        if (empty($tasks)) {
+        if (empty($products)) {
             throw ProductsNotFoundException::fromCategoryId($categoryId->toString());
         }
 
-        return $tasks;
+        return $products;
     }
 }
