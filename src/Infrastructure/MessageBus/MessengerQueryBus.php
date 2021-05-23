@@ -2,12 +2,12 @@
 
 namespace App\Infrastructure\MessageBus;
 
-use App\Application\MessageBus\QueryBusInterface;
+use App\Application\MessageBus\QueryBus;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class QueryBus implements QueryBusInterface
+class MessengerQueryBus implements QueryBus
 {
     use HandleTrait;
 

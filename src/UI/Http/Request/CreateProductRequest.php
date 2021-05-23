@@ -48,7 +48,7 @@ class CreateProductRequest
             $currencyCode = $request->request->get('currency');
             $money = new Money($amount, new Currency($currencyCode));
 
-            $self = new self(
+            $createProductRequest = new self(
                 $id,
                 $categoryId,
                 $name->name(),
@@ -60,7 +60,7 @@ class CreateProductRequest
             throw new BadRequestException($e->getMessage());
         }
 
-        return $self;
+        return $createProductRequest;
     }
 
     public function id(): UuidInterface

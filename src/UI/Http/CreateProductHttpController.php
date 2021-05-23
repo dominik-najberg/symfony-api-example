@@ -3,16 +3,16 @@
 namespace App\UI\Http;
 
 use App\Application\Command\CreateProduct;
+use App\Application\MessageBus\CommandBus;
 use App\UI\Http\Request\CreateProductRequest;
 use App\UI\Http\Response\CreateProductResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateProductHttpController
 {
-    private MessageBusInterface $commandBus;
+    private CommandBus $commandBus;
 
-    public function __construct(MessageBusInterface $commandBus)
+    public function __construct(CommandBus $commandBus)
     {
         $this->commandBus = $commandBus;
     }

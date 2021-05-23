@@ -2,7 +2,7 @@
 
 namespace App\Application\MessageBus;
 
-interface QueryBusInterface
+interface QueryBus
 {
     /**
      * @param mixed $query

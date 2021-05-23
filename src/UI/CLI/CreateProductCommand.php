@@ -3,22 +3,22 @@
 namespace App\UI\CLI;
 
 use App\Application\Command\CreateProduct;
+use App\Application\MessageBus\CommandBus;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateProductCommand extends Command
 {
-    private MessageBusInterface $commandBus;
+    private CommandBus $commandBus;
 
     protected static $defaultName        = 'app:create-product';
     protected static $defaultDescription = 'Add a short description for your command';
 
-    public function __construct(MessageBusInterface $commandBus)
+    public function __construct(CommandBus $commandBus)
     {
         parent::__construct(self::$defaultName);
         $this->commandBus = $commandBus;

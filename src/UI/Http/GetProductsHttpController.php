@@ -2,7 +2,7 @@
 
 namespace App\UI\Http;
 
-use App\Application\MessageBus\QueryBusInterface;
+use App\Application\MessageBus\QueryBus;
 use App\Application\Query\GetProducts;
 use App\Application\Query\ViewModel\ProductDTO;
 use App\UI\Http\Request\GetProductsRequest;
@@ -11,9 +11,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetProductsHttpController
 {
-    private QueryBusInterface $queryBus;
+    private QueryBus $queryBus;
 
-    public function __construct(QueryBusInterface $queryBus)
+    public function __construct(QueryBus $queryBus)
     {
         $this->queryBus = $queryBus;
     }
