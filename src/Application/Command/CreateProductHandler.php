@@ -9,17 +9,16 @@ use App\Domain\Product\Value\Description;
 use App\Domain\Product\Value\Name;
 use Money\Currency;
 use Money\Money;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class CreateProductHandler implements MessageHandlerInterface
+class CreateProductHandler
 {
-    private ProductRepository   $products;
+    private ProductRepository $products;
     private MessageBusInterface $messageBus;
 
     public function __construct(ProductRepository $products, MessageBusInterface $messageBus)
     {
-        $this->products   = $products;
+        $this->products = $products;
         $this->messageBus = $messageBus;
     }
 
