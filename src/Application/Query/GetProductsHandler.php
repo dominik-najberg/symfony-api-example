@@ -4,9 +4,8 @@ namespace App\Application\Query;
 
 use App\Application\Query\ViewModel\ProductDTO;
 use App\Application\Repository\GetProductsRepository;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-class GetProductsHandler implements MessageHandlerInterface
+class GetProductsHandler
 {
     private GetProductsRepository $products;
 
