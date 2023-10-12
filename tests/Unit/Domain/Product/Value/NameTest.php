@@ -1,6 +1,6 @@
 <?php
 
-namespace Unit\Domain\Product\Value;
+namespace App\Tests\Unit\Domain\Product\Value;
 
 use App\Domain\Product\Exception\InvalidName;
 use App\Domain\Product\Value\Name;
