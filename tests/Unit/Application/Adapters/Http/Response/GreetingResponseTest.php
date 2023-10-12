@@ -15,7 +15,7 @@ class GreetingResponseTest extends TestCase
     public function shouldCreateResponse(): void
     {
         $name     = 'Dominik';
-        $greeting = Greeting::byName($name);
+        $greeting = Greeting::fromName($name);
         $expected = GreetingDataProvider::createResponseJson($name);
         $actual   = GreetingResponse::fromGreeting($greeting);
 

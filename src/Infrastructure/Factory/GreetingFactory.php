@@ -9,6 +9,6 @@ class GreetingFactory implements GreetingRepository
 {
     public function byName(string $name): Greeting
     {
-        return Greeting::byName($name);
+        return Greeting::fromName($name);
     }
 }

@@ -8,10 +8,10 @@ class Description
 {
     private const MINIMUM_LENGTH = 100;
     private const MAXIMUM_LENGTH = 255;
-    private string $description;
 
-    public function __construct(string $description)
-    {
+    public function __construct(
+        public string $description
+    ) {
         if (strlen($description) < self::MINIMUM_LENGTH) {
             throw InvalidDescription::minLengthRequirement(self::MINIMUM_LENGTH);
         }
@@ -21,10 +21,5 @@ class Description
         }
 
         $this->description = $description;
-    }
-
-    public function description(): string
-    {
-        return $this->description;
     }
 }

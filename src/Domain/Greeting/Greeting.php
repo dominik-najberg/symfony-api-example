@@ -5,14 +5,13 @@ namespace App\Domain\Greeting;
 class Greeting
 {
     private const GREETING_TEMPLATE = 'Hello, %s!';
-    private string $name;
 
-    private function __construct(string $name)
-    {
-        $this->name = $name;
+    private function __construct(
+        private string $name,
+    ) {
     }
 
-    public static function byName(string $name): Greeting
+    public static function fromName(string $name): Greeting
     {
         return new self($name);
     }

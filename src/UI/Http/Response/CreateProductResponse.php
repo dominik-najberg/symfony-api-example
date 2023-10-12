@@ -14,12 +14,12 @@ class CreateProductResponse extends JsonResponse
             [
                 'data' => [
                     'type'       => 'products',
-                    'id'         => $command->id(),
+                    'id'         => $command->id,
                     'attributes' => [
-                        'name'        => $command->name(),
-                        'description' => $command->description(),
-                        'amount'      => $command->amount(),
-                        'currency'    => $command->currency(),
+                        'name'        => $command->name,
+                        'description' => $command->description,
+                        'amount'      => $command->amount,
+                        'currency'    => $command->currency,
                     ],
                 ],
             ],

@@ -11,17 +11,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetProductsHttpController
 {
-    private QueryBus $queryBus;
-
-    public function __construct(QueryBus $queryBus)
+    public function __construct(private readonly QueryBus $queryBus)
     {
-        $this->queryBus = $queryBus;
     }
 
     public function __invoke(GetProductsRequest $request): JsonResponse
     {
         /** @var ProductDTO[] $products */
-        $products = $this->queryBus->query(new GetProducts($request->categoryId()));
+        $products = $this->queryBus->query(new GetProducts($request->categoryId));
 
         return GetProductsResponse::fromProductDTOs($products);
     }

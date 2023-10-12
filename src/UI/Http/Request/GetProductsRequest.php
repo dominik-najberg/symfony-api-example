@@ -9,11 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GetProductsRequest
 {
-    private UuidInterface $categoryId;
-
-    private function __construct(UuidInterface $categoryId)
+    private function __construct(public readonly UuidInterface $categoryId)
     {
-        $this->categoryId = $categoryId;
     }
 
     public static function fromRequest(Request $request): self
@@ -27,10 +24,5 @@ class GetProductsRequest
         }
 
         return $self;
-    }
-
-    public function categoryId(): UuidInterface
-    {
-        return $this->categoryId;
     }
 }

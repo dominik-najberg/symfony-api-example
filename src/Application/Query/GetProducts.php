@@ -6,15 +6,8 @@ use Ramsey\Uuid\UuidInterface;
 
 class GetProducts
 {
-    private UuidInterface $categoryId;
-
-    public function __construct(UuidInterface $categoryId)
-    {
-        $this->categoryId = $categoryId;
-    }
-
-    public function categoryId(): UuidInterface
-    {
-        return $this->categoryId;
+    public function __construct(
+        public readonly UuidInterface $categoryId,
+    ) {
     }
 }

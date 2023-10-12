@@ -10,22 +10,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CreateProductHttpController
 {
-    private CommandBus $commandBus;
-
-    public function __construct(CommandBus $commandBus)
+    public function __construct(private readonly CommandBus $commandBus)
     {
-        $this->commandBus = $commandBus;
     }
 
     public function __invoke(CreateProductRequest $createProductRequest): JsonResponse
     {
         $command = new CreateProduct(
-            $createProductRequest->id(),
-            $createProductRequest->categoryId(),
-            $createProductRequest->name(),
-            $createProductRequest->description(),
-            $createProductRequest->amount(),
-            $createProductRequest->currency()
+            $createProductRequest->id,
+            $createProductRequest->categoryId,
+            $createProductRequest->name,
+            $createProductRequest->description,
+            $createProductRequest->amount,
+            $createProductRequest->currency
         );
 
         $this->commandBus->dispatch($command);

@@ -7,18 +7,14 @@ use App\Application\Repository\GetProductsRepository;
 
 class GetProductsHandler
 {
-    private GetProductsRepository $products;
-
-    public function __construct(GetProductsRepository $products)
-    {
-        $this->products = $products;
+    public function __construct(
+        private readonly GetProductsRepository $products,
+    ) {
     }
 
-    /**
-     * @return ProductDTO[]
-     */
+    /** @return ProductDTO[] */
     public function __invoke(GetProducts $query): iterable
     {
-        return $this->products->getByCategoryId($query->categoryId());
+        return $this->products->getByCategoryId($query->categoryId);
     }
 }

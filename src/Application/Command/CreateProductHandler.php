@@ -13,29 +13,32 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateProductHandler
 {
-    private ProductRepository $products;
-    private MessageBusInterface $messageBus;
-
-    public function __construct(ProductRepository $products, MessageBusInterface $messageBus)
-    {
-        $this->products = $products;
-        $this->messageBus = $messageBus;
+    public function __construct(
+        private readonly ProductRepository   $products,
+        private readonly MessageBusInterface $messageBus,
+    ) {
     }
 
     public function __invoke(CreateProduct $command)
     {
         $product = Product::create(
-            $command->id(),
-            $command->categoryId(),
-            new Name($command->name()),
-            new Description($command->description()),
-            new Money($command->amount(), new Currency($command->currency()))
+            $command->id,
+            $command->categoryId,
+            new Name($command->name),
+            new Description($command->description),
+            new Money($command->amount, new Currency($command->currency))
         );
 
         $this->products->add($product);
 
         $this->messageBus->dispatch(
-            ProductCreated::fromProduct($product)
+            new ProductCreated(
+                $command->id->toString(),
+                $command->name,
+                $command->description,
+                $command->amount,
+                $command->currency,
+            )
         );
     }
 }

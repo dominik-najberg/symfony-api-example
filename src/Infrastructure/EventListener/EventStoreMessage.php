@@ -4,13 +4,10 @@ namespace App\Infrastructure\EventListener;
 
 class EventStoreMessage
 {
-    private string $type;
-    private string $body;
-
-    public function __construct(string $type, string $body)
-    {
-        $this->type = $type;
-        $this->body = $body;
+    public function __construct(
+        public readonly string $type,
+        public readonly string $body,
+    ) {
     }
 
     /**

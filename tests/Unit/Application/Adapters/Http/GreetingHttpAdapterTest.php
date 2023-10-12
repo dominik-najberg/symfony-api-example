@@ -16,7 +16,7 @@ class GreetingHttpAdapterTest extends TestCase
     public function shouldCreateResponse(): void
     {
         $name     = 'Dominik';
-        $greeting = Greeting::byName($name);
+        $greeting = Greeting::fromName($name);
 
         $greetings = $this->createMock(GreetingRepository::class);
         $greetings

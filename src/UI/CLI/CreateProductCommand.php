@@ -13,15 +13,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CreateProductCommand extends Command
 {
-    private CommandBus $commandBus;
-
     protected static $defaultName        = 'app:create-product';
     protected static $defaultDescription = 'Add a short description for your command';
 
-    public function __construct(CommandBus $commandBus)
+    public function __construct(private readonly CommandBus $commandBus)
     {
         parent::__construct(self::$defaultName);
-        $this->commandBus = $commandBus;
     }
 
     protected function configure(): void

@@ -2,20 +2,14 @@
 
 namespace App\UI\Queue\Message;
 
+use Ramsey\Uuid\UuidInterface;
+
 class ProductArrived
 {
-    private string $productId;
-
     /**
      * This can translate a message from an external queue
      */
-    public function __construct(string $productId)
+    public function __construct(public UuidInterface $categoryId)
     {
-        $this->productId = $productId;
-    }
-
-    public function productId(): string
-    {
-        return $this->productId;
     }
 }

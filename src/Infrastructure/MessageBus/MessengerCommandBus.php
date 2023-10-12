@@ -7,16 +7,11 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class MessengerCommandBus implements CommandBus
 {
-    private MessageBusInterface $commandBus;
-
-    public function __construct(MessageBusInterface $commandBus)
-    {
-        $this->commandBus = $commandBus;
+    public function __construct(
+        private readonly MessageBusInterface $commandBus,
+    ) {
     }
 
-    /**
-     * @param $message
-     */
     public function dispatch($message): void
     {
         $this->commandBus->dispatch($message);

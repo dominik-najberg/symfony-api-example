@@ -13,27 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CreateProductRequest
 {
-    private UuidInterface $id;
-    private UuidInterface $categoryId;
-    private string $name;
-    private string $description;
-    private int $amount;
-    private string $currency;
-
     private function __construct(
-        UuidInterface $id,
-        UuidInterface $categoryId,
-        string $name,
-        string $description,
-        int $amount,
-        string $currency
+        public readonly UuidInterface $id,
+        public readonly UuidInterface $categoryId,
+        public readonly string        $name,
+        public readonly string        $description,
+        public readonly int           $amount,
+        public readonly string        $currency
     ) {
-        $this->id = $id;
-        $this->categoryId = $categoryId;
-        $this->name = $name;
-        $this->description = $description;
-        $this->amount = $amount;
-        $this->currency = $currency;
     }
 
 
@@ -51,8 +38,8 @@ class CreateProductRequest
             $createProductRequest = new self(
                 $id,
                 $categoryId,
-                $name->name(),
-                $description->description(),
+                $name->name,
+                $description->description,
                 (int)$money->getAmount(),
                 $money->getCurrency()->getCode(),
             );

@@ -4,25 +4,24 @@ namespace App\UI\Queue;
 
 use App\Application\Command\CreateProduct;
 use App\UI\Queue\Message\ProductArrived;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class AddProductMessageAdapter
 {
-    private MessageBusInterface $commandBus;
-
-    public function __construct(MessageBusInterface $commandBus)
+    public function __construct(private readonly MessageBusInterface $commandBus)
     {
-        $this->commandBus = $commandBus;
     }
 
-    // string can be a message from an external queue (Amazon SQS)
-    public function __invoke(string $uuid): void
+    public function __invoke(UuidInterface $uuid): void
     {
         $productArrived = new ProductArrived($uuid);
 
         $this->commandBus->dispatch(
             new CreateProduct(
-                $productArrived->productId(),
+                Uuid::uuid4(), // simplification for demo purposes
+                $productArrived->categoryId,
                 'name',
                 str_repeat('From queue', 10),
                 100,

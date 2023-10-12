@@ -23,7 +23,7 @@ class DoctrineProductRepository extends ServiceEntityRepository implements Produ
     /**
      * @return ProductDTO[]
      */
-    public function getProducts(): array
+    public function getProducts(): iterable
     {
         return
             $this

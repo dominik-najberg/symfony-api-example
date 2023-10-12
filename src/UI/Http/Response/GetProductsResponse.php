@@ -14,11 +14,11 @@ class GetProductsResponse extends JsonResponse
                 'data' => array_map(
                     static fn(ProductDTO $product): array => [
                         'type'       => 'products',
-                        'id'         => $product->id(),
+                        'id'         => $product->id,
                         'attributes' => [
-                            'title'       => $product->title(),
-                            'description' => $product->description(),
-                            'price'       => sprintf('%s %s', $product->amount(), $product->currency()),
+                            'title'       => $product->title,
+                            'description' => $product->description,
+                            'price'       => sprintf('%s %s', $product->amount, $product->currency),
                         ]
                     ],
                     $products
