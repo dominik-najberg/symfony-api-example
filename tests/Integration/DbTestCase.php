@@ -15,10 +15,13 @@ class DbTestCase extends KernelTestCase
     {
         parent::setUp();
 
-        self::bootKernel();
-        $this->entityManager = self::$container->get('doctrine')->getManager();
-    }
+        $kernel = self::bootKernel();
 
+        $this->entityManager = $kernel->getContainer()
+            ->get('doctrine')
+            ->getManager();
+
+    }
 
     protected function truncateTable(string $className): void
     {

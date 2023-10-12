@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Unit\Domain\Product\Value;
+namespace Unit\Domain\Product\Value;
 
 use App\Domain\Product\Exception\InvalidName;
 use App\Domain\Product\Value\Name;
@@ -16,7 +16,7 @@ class NameTest extends TestCase
         $expectedName = 'expected name';
         $actual       = new Name($expectedName);
 
-        self::assertEquals($expectedName, $actual->name());
+        self::assertEquals($expectedName, $actual->name);
     }
 
     /**

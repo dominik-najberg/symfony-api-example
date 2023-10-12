@@ -18,7 +18,7 @@ class GetProductsHttpAdapterTest extends WebTestCase
     {
         parent::setUp();
         $this->client  = static::createClient();
-        $entityManager = self::$container->get('doctrine')->getManager();
+        $entityManager = static::getContainer()->get('doctrine')->getManager();
         (new DbTableTruncator($entityManager))->truncate(Product::class);
         (new DbSeeder($entityManager))->load(ProductDataProvider::singleProduct());
     }

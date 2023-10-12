@@ -21,7 +21,7 @@ class CreateProductHttpAdapterTest extends WebTestCase
     {
         parent::setUp();
         $this->client  = static::createClient();
-        $this->manager = self::$container->get('doctrine')->getManager();
+        $this->manager = static::getContainer()->get('doctrine')->getManager();
         (new DbTableTruncator($this->manager))->truncate(Product::class);
         (new DbSeeder($this->manager))->load(ProductDataProvider::singleProduct());
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Unit\Domain\Product\Value;
+namespace Unit\Domain\Product\Value;
 
 use App\Domain\Product\Exception\InvalidDescription;
 use App\Domain\Product\Value\Description;
@@ -18,7 +18,7 @@ class DescriptionTest extends TestCase
         $description = str_repeat('a', self::MINIMUM_LENGTH);
         $actual      = new Description($description);
 
-        self::assertEquals($description, $actual->description());
+        self::assertEquals($description, $actual->description);
     }
 
     /**

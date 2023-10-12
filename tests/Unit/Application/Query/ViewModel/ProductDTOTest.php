@@ -26,10 +26,10 @@ class ProductDTOTest extends TestCase
             $expectedCurrency
         );
 
-        self::assertEquals($expectedId, $actual->id());
-        self::assertEquals($expectedTitle, $actual->title());
-        self::assertEquals($expectedDescription, $actual->description());
-        self::assertEquals($expectedAmount, $actual->amount());
-        self::assertEquals($expectedCurrency, $actual->currency());
+        self::assertEquals($expectedId, $actual->id);
+        self::assertEquals($expectedTitle, $actual->title);
+        self::assertEquals($expectedDescription, $actual->description);
+        self::assertEquals($expectedAmount, $actual->amount);
+        self::assertEquals($expectedCurrency, $actual->currency);
     }
 }

@@ -22,12 +22,12 @@ class CreateProductTest extends TestCase
 
         $actual = new CreateProduct($id, $categoryId, $name, $description, $amount, $currency);
 
-        self::assertEquals($id, $actual->id());
-        self::assertEquals($categoryId, $actual->categoryId());
-        self::assertEquals($name, $actual->name());
-        self::assertEquals($description, $actual->description());
-        self::assertEquals($amount, $actual->amount());
-        self::assertEquals($currency, $actual->currency());
+        self::assertEquals($id, $actual->id);
+        self::assertEquals($categoryId, $actual->categoryId);
+        self::assertEquals($name, $actual->name);
+        self::assertEquals($description, $actual->description);
+        self::assertEquals($amount, $actual->amount);
+        self::assertEquals($currency, $actual->currency);
     }
 
 }
