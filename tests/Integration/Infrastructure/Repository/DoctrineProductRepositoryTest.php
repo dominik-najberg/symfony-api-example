@@ -32,7 +32,10 @@ class DoctrineProductRepositoryTest extends DbTestCase
         $this->entityManager->flush();
         $this->entityManager->clear();
 
-        $actual = $this->entityManager->find(Product::class, $expected->id());
+        $reflection = new \ReflectionObject($expected);
+
+
+        $actual = $this->entityManager->find(Product::class, $reflection->getProperty('id')->getValue($expected));
         self::assertEquals($actual, $expected);
     }
 }

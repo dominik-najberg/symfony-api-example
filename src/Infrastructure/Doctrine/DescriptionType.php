@@ -13,7 +13,7 @@ class DescriptionType extends StringType
         return new Description($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?Description
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         return $value instanceof Description ? $value->description : null;
     }

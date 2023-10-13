@@ -71,10 +71,12 @@ class CreateProductHttpAdapterTest extends WebTestCase
         /** @var Product $actual */
         $actual = $this->manager->find(Product::class, $id);
 
-        self::assertEquals($productName, $actual->name()->name());
-        self::assertEquals($description, $actual->description()->description());
-        self::assertEquals($amount, (int)$actual->price()->getAmount());
-        self::assertEquals($currency, $actual->price()->getCurrency()->getCode());
+        $reflection = new \ReflectionObject($actual);
+
+        self::assertEquals($productName, $reflection->getProperty('name')->getValue($actual)->name);
+        self::assertEquals($description, $reflection->getProperty('description')->getValue($actual)->description);
+        self::assertEquals($amount, (int)$reflection->getProperty('price')->getValue($actual)->getAmount());
+        self::assertEquals($currency, $reflection->getProperty('price')->getValue($actual)->getCurrency()->getCode());
     }
 
     private function makeJsonApiReply(string $id, string $productName, string $description, int $amount, string $currency): string

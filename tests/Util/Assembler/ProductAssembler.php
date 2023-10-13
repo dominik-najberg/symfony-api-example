@@ -40,7 +40,7 @@ class ProductAssembler
             Uuid::fromString(self::CATEGORY_ID),
             new Name('product name'),
             new Description(str_repeat('description', 10)),
-            Money::USD(700),
+            Money::GBP(700),
         );
     }
 

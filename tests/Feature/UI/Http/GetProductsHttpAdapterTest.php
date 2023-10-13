@@ -61,7 +61,7 @@ class GetProductsHttpAdapterTest extends WebTestCase
       "attributes": {
         "title": "One interesting product",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet",
-        "price": "1000 USD"
+        "price": "1000 GBP"
       }
     }
   ]

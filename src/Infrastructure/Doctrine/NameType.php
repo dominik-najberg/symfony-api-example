@@ -13,7 +13,7 @@ class NameType extends StringType
         return new Name($value);
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?Name
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         return $value instanceof Name ? $value->name : null;
     }

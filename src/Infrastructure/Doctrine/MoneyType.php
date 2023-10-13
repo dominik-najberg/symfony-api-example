@@ -4,23 +4,28 @@ namespace App\Infrastructure\Doctrine;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
+use Money\Currency;
 use Money\Money;
 
 class MoneyType extends Type
 {
-
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?Money
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        return $value instanceof Money ? $value->getAmount() : null;
+        return 'BIGINT';
+    }
+
+    public function convertToPHPValue($value, AbstractPlatform $platform): Money
+    {
+        return new Money($value, new Currency('GBP')); // for demo purposes we will use only GBP
+    }
+
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    {
+        return $value->getAmount();
     }
 
     public function getName(): string
     {
         return 'money';
-    }
-
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
-    {
-        return 'DECIMAL(10, 2)';
     }
 }

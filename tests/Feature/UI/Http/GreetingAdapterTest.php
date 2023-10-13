@@ -33,7 +33,7 @@ class GreetingAdapterTest extends WebTestCase
         );
     }
 
-    public function namesDataProvider(): array
+    public static function namesDataProvider(): array
     {
         return [
             ['Dominik'],

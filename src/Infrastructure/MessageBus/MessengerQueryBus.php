@@ -5,6 +5,7 @@ namespace App\Infrastructure\MessageBus;
 use App\Application\MessageBus\QueryBus;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 
 class MessengerQueryBus implements QueryBus
 {
@@ -16,11 +17,9 @@ class MessengerQueryBus implements QueryBus
 
     public function query($query): mixed
     {
-        if ($query instanceof Envelope) {
-            return $this->messageBus->dispatch($query)->last();
-        }
+        $envelope = $this->messageBus->dispatch($query instanceof Envelope ? $query : new Envelope($query));
 
-        return $this->messageBus->dispatch(new Envelope($query))->last();
+        // The handler result is the return value of dispatch() method
+        return $envelope->last(HandledStamp::class)->getResult();
     }
-
 }
