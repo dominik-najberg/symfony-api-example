@@ -8,10 +8,9 @@
             repository-class="App\Infrastructure\Repository\DoctrineProductRepository">
         <id name="id" type="uuid"/>
         <field name="categoryId" type="uuid"/>
-        <field name="name" type="string" length="100" nullable="false"/>
-        <field name="description" type="string"/>
-        <field name="amount" type="string"/>
-        <field name="currency" type="string" length="3"/>
+        <field name="name" type="name" length="100"/>
+        <field name="description" type="description"/>
+        <field name="price" type="money"/>
     </entity>
 
 </doctrine-mapping>

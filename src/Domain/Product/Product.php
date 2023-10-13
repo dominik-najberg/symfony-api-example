@@ -32,6 +32,6 @@ class Product
     {
         $this->name = $name;
 
-        // any additional logic
+        // any additional logic (business rules)
     }
 }
