@@ -1,7 +1,11 @@
 # symfony-api-example
 
-Symfony is supposed to be a technological detail. Here is my proposal on how to do it. I am trying my best to keep it as
-framework agnostic as possible. This is why I moved some classes to `\framework`.
+Symfony is supposed to be a technological detail. Here is my proposal on how to do it.
+
+This is as framework agnostic as possible. The framework dependencies are only possible in the UI and Infrastructure layers.
+I moved some classes to `\framework` to keep the framework details separate.
+
+Layered architecture. Hexagonal.
 
 The tests are your documentation.
 
